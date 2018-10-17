@@ -1,13 +1,13 @@
 {
   "name": "ember-element-helper",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Dynamic element helper for Glimmer templates.",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/tildeio/ember-element-helper",
   "license": "MIT",
-  "author": "",
+  "author": "Godfrey Chan <godfrey@tilde.io>",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -17,14 +17,20 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
-    "test": "ember test",
+    "test": "yarn test:node && yarn test:ember",
+    "test:node": "qunit node-tests",
+    "test:ember": "ember test",
     "test:all": "ember try:each"
   },
   "dependencies": {
     "ember-cli-babel": "^6.16.0"
   },
+  "peerDependencies": {
+    "@glimmer/syntax": "*"
+  },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
+    "@glimmer/syntax": "*",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.1.0",
     "ember-cli": "~3.5.0",
@@ -48,6 +54,7 @@
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
     "loader.js": "^4.7.0",
+    "qunit": "*",
     "qunit-dom": "^0.8.0"
   },
   "engines": {

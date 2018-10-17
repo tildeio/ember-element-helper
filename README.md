@@ -1,7 +1,12 @@
 ember-element-helper
 ==============================================================================
 
-[Short description of the addon.]
+[![Build Status](https://travis-ci.com/tildeio/ember-element-helper.svg?branch=master)](https://travis-ci.com/tildeio/ember-element-helper)
+
+Dynamic element helper for Glimmer templates.
+
+See [this RFC comment](https://github.com/emberjs/rfcs/pull/389#issuecomment-429691544)
+for more context and motivation.
 
 Installation
 ------------------------------------------------------------------------------
@@ -14,8 +19,11 @@ ember install ember-element-helper
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
-
+```hbs
+{{#let (element this.tagName) as |Tag|}}
+  <Tag class="my-tag">hello world!</Tag>
+{{/let}}
+```
 
 Contributing
 ------------------------------------------------------------------------------
@@ -37,6 +45,7 @@ Contributing
 * `ember test` – Runs the test suite on the current Ember version
 * `ember test --server` – Runs the test suite in "watch mode"
 * `ember try:each` – Runs the test suite against multiple Ember versions
+* `yarn test:node` – Runs the additional test suite for syntax errors
 
 ### Running the dummy application
 
