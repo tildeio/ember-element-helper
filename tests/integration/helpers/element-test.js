@@ -4,6 +4,7 @@ import { render, settled } from '@ember/test-helpers';
 import { helper } from '@ember/component/helper';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component';
 
 module('Integration | Helper | element', function(hooks) {
   let originalOnerror;
@@ -195,5 +196,28 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h1#content').hasText('rendered 5 time(s)');
     assert.dom('h2#content').doesNotExist();
     assert.dom('h3#content').doesNotExist();
+  });
+
+  test('it can contain yielded content', async function (assert) {
+    this.owner.register("component:x-wrapper", Component.extend({
+      layout: hbs`
+        {{#let (element 'aside') as |Tag|}}
+          <Tag class="foo" ...attributes>{{yield}}</Tag>
+          <h3>Inside the let</h3>
+        {{/let}}
+      `
+    }));
+    // If you remove the splattributes on <Tag> it works :/
+
+    await render(hbs`
+      {{#x-wrapper}}
+        <h1>Inside the yield</h1>
+      {{/x-wrapper}}
+      <h2>External</h2>
+    `);
+    assert.dom('h2').hasText('External');
+    assert.dom('h3').hasText('Inside the let');
+    assert.dom('h1').hasText('Inside the yield');
+    assert.dom('aside').hasClass('foo');
   });
 });
