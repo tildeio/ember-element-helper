@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled } from '@ember/test-helpers';
+import { render, settled, click } from '@ember/test-helpers';
 import { helper } from '@ember/component/helper';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
@@ -195,5 +195,19 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h1#content').hasText('rendered 5 time(s)');
     assert.dom('h2#content').doesNotExist();
     assert.dom('h3#content').doesNotExist();
+  });
+
+  test('supports element modifiers', async function(assert) {
+    this.set('onClick', function() {
+      assert.ok(true);
+    });
+
+    await render(hbs`
+      {{#let (element tagName) as |Tag|}}
+        <Tag id="click-me" {{action onClick}}></Tag>
+      {{/let}}
+    `);
+
+    await click('#click-me');
   });
 });
