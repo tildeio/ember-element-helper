@@ -1,6 +1,5 @@
 const { QUnit, test } = require('qunit');
 const { precompile, registerPlugin } = require('ember-source/dist/ember-template-compiler');
-const { SyntaxError } = require('@glimmer/syntax');
 
 registerPlugin('ast', require('../lib/element-helper-syntax-plugin'));
 
@@ -11,7 +10,7 @@ QUnit.module('element helper: syntax errors', () => {
           <Tag id="content">hello world!</Tag>
         {{/let}}
       `),
-      new SyntaxError('the `element` helper requires exactly one positional argument (on line 2 column 15)')
+      new Error('the `element` helper requires exactly one positional argument (on line 2 column 15)')
     );
 
     assert.throws(() => precompile(`
@@ -19,7 +18,7 @@ QUnit.module('element helper: syntax errors', () => {
           <Tag id="content">hello world!</Tag>
         {{/let}}
       `),
-      new SyntaxError('the `element` helper requires exactly one positional argument (on line 2 column 15)')
+      new Error('the `element` helper requires exactly one positional argument (on line 2 column 15)')
     );
   });
 
@@ -29,7 +28,7 @@ QUnit.module('element helper: syntax errors', () => {
           <Tag>hello world!</Tag>
         {{/let}}
       `),
-      new SyntaxError('the `element` helper does not accept any named arguments (on line 2 column 15)')
+      new Error('the `element` helper does not accept any named arguments (on line 2 column 15)')
     );
   });
 
@@ -39,7 +38,7 @@ QUnit.module('element helper: syntax errors', () => {
           hello world!
         {{/element}}
       `),
-      new SyntaxError('the `element` helper does not take a block (on line 2 column 8)')
+      new Error('the `element` helper does not take a block (on line 2 column 8)')
     );
 
     assert.throws(() => precompile(`
@@ -49,7 +48,7 @@ QUnit.module('element helper: syntax errors', () => {
           nope
         {{/element}}
       `),
-      new SyntaxError('the `element` helper does not take a block (on line 2 column 8)')
+      new Error('the `element` helper does not take a block (on line 2 column 8)')
     );
   });
 
@@ -57,7 +56,7 @@ QUnit.module('element helper: syntax errors', () => {
     assert.throws(() => precompile(`
         {{element "h1"}}
       `),
-      new SyntaxError('the `element` helper cannot be appended to the DOM directly (on line 2 column 8)')
+      new Error('the `element` helper cannot be appended to the DOM directly (on line 2 column 8)')
     );
   });
 });
