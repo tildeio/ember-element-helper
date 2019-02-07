@@ -25,12 +25,8 @@
   "dependencies": {
     "ember-cli-babel": "^6.16.0"
   },
-  "peerDependencies": {
-    "@glimmer/syntax": "*"
-  },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
-    "@glimmer/syntax": "*",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.1.0",
     "ember-cli": "~3.5.0",
