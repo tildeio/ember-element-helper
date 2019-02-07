@@ -57,7 +57,7 @@ module('Integration | Helper | element', function(hooks) {
     assert.equal(this.element.innerHTML.trim(), 'hello world!');
   });
 
-  test('it throws when pasased a non-string value', async function() {
+  test('it throws when pasased a number', async function() {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `123`)'));
 
     await render(hbs`
@@ -65,7 +65,9 @@ module('Integration | Helper | element', function(hooks) {
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
+  });
 
+  test('it throws when pasased a boolean', async function() {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `false`)'));
 
     await render(hbs`
@@ -73,7 +75,9 @@ module('Integration | Helper | element', function(hooks) {
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
+  });
 
+  test('it throws when pasased null', async function() {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `null`)'));
 
     await render(hbs`
@@ -81,7 +85,9 @@ module('Integration | Helper | element', function(hooks) {
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
+  });
 
+  test('it throws when pasased undefined', async function() {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `undefined`)'));
 
     await render(hbs`
@@ -89,7 +95,9 @@ module('Integration | Helper | element', function(hooks) {
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
+  });
 
+  test('it throws when pasased an object', async function() {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string'));
 
     this.set('value', Object.create(null));
