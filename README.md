@@ -1,5 +1,4 @@
-ember-element-helper
-==============================================================================
+# ember-element-helper
 
 [![Build Status](https://travis-ci.com/tildeio/ember-element-helper.svg?branch=master)](https://travis-ci.com/tildeio/ember-element-helper)
 
@@ -8,16 +7,13 @@ Dynamic element helper for Glimmer templates.
 See [this RFC comment](https://github.com/emberjs/rfcs/pull/389#issuecomment-429691544)
 for more context and motivation.
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
-```
+```bash
 ember install ember-element-helper
 ```
 
-
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 ```hbs
 {{#let (element this.tagName) as |Tag|}}
@@ -25,36 +21,44 @@ Usage
 {{/let}}
 ```
 
-Contributing
-------------------------------------------------------------------------------
+### `{{element}}` as Primitive
 
-### Installation
+You can use `{{element}}` as primitive to pass around the respective element to
+created.
 
-* `git clone <repository-url>`
-* `cd ember-element-helper`
-* `yarn install`
+Your component (and how to type it):
 
-### Linting
+```ts
+import Component from '@glimmer/component';
+import Element from 'ember-element-helper';
 
-* `yarn lint:hbs`
-* `yarn lint:js`
-* `yarn lint:js --fix`
+interface MyArgs {
+  element: Element;
+}
 
-### Running tests
+export default class MyComponent extends Component<MyArgs> {}
+```
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
-* `yarn test:node` – Runs the additional test suite for syntax errors
+Your template:
 
-### Running the dummy application
+```hbs
+{{#let (if @element @element (element "div")) as |Tag|}}
+  <Tag>{{yield}}</Tag>
+{{/let}}
+```
 
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+And the incovation:
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+```hbs
+<MyComponent @element={{element "a"}}>
+  My Text
+</MyComponent>
+```
 
-License
-------------------------------------------------------------------------------
+## Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
