@@ -204,4 +204,21 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h2#content').doesNotExist();
     assert.dom('h3#content').doesNotExist();
   });
+
+  test('it can be passed as argument', async function(assert) {
+    await render(hbs`<ElementReceiver @element={{element "p"}}>Test</ElementReceiver>`);
+
+    assert.dom('p').hasText('Test');
+  });
+
+  test('it can be invoked inline', async function(assert) {
+    await render(hbs`{{element "p"}}`);
+
+    assert.dom('p').exists();
+
+    await render(hbs`{{element "br"}}`);
+
+    assert.dom('br').exists();
+  });
+
 });
