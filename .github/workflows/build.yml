@@ -25,6 +25,9 @@ jobs:
           - beta
           - canary
           - lts-3.4
+          - lts-3.8
+          - lts-3.12
+          - lts-3.16
     steps:
       - name: Checkout
         uses: actions/checkout@v1

@@ -14,13 +14,33 @@ module.exports = function() {
       scenarios: [
         {
           name: 'ember-lts-3.4',
-          env: {
-            EMBER_OPTIONAL_FEATURES: JSON.stringify({ 'jquery-integration': true }),
-          },
           npm: {
             devDependencies: {
-              '@ember/jquery': '^0.5.2',
               'ember-source': '~3.4.0'
+            }
+          }
+        },
+        {
+          name: 'ember-lts-3.8',
+          npm: {
+            devDependencies: {
+              'ember-source': '~3.8.0'
+            }
+          }
+        },
+        {
+          name: 'ember-lts-3.12',
+          npm: {
+            devDependencies: {
+              'ember-source': '~3.12.0'
+            }
+          }
+        },
+        {
+          name: 'ember-lts-3.16',
+          npm: {
+            devDependencies: {
+              'ember-source': '~3.16.0'
             }
           }
         },
