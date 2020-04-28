@@ -61,9 +61,11 @@ module('Integration | Helper | element', function(hooks) {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `123`)'));
 
     await render(hbs`
-      {{#let (element 123) as |Tag|}}
-        <Tag id="content">hello world!</Tag>
-      {{/let}}
+      <div>
+        {{#let (element 123) as |Tag|}}
+          <Tag id="content">hello world!</Tag>
+        {{/let}}
+      </div>
     `);
   });
 
@@ -71,9 +73,11 @@ module('Integration | Helper | element', function(hooks) {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `false`)'));
 
     await render(hbs`
-      {{#let (element false) as |Tag|}}
-        <Tag id="content">hello world!</Tag>
-      {{/let}}
+      <div>
+        {{#let (element false) as |Tag|}}
+          <Tag id="content">hello world!</Tag>
+        {{/let}}
+      </div>
     `);
   });
 
@@ -81,9 +85,11 @@ module('Integration | Helper | element', function(hooks) {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `null`)'));
 
     await render(hbs`
-      {{#let (element null) as |Tag|}}
-        <Tag id="content">hello world!</Tag>
-      {{/let}}
+      <div>
+        {{#let (element null) as |Tag|}}
+          <Tag id="content">hello world!</Tag>
+        {{/let}}
+      </div>
     `);
   });
 
@@ -91,9 +97,11 @@ module('Integration | Helper | element', function(hooks) {
     expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `undefined`)'));
 
     await render(hbs`
-      {{#let (element undefined) as |Tag|}}
-        <Tag id="content">hello world!</Tag>
-      {{/let}}
+      <div>
+        {{#let (element undefined) as |Tag|}}
+          <Tag id="content">hello world!</Tag>
+        {{/let}}
+      </div>
     `);
   });
 
@@ -103,9 +111,11 @@ module('Integration | Helper | element', function(hooks) {
     this.set('value', Object.create(null));
 
     await render(hbs`
-      {{#let (element value) as |Tag|}}
-        <Tag id="content">hello world!</Tag>
-      {{/let}}
+      <div>
+        {{#let (element value) as |Tag|}}
+          <Tag id="content">hello world!</Tag>
+        {{/let}}
+      </div>
     `);
   });
 
