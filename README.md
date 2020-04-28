@@ -24,7 +24,6 @@ Installation
 ember install ember-element-helper
 ```
 
-
 Usage
 ------------------------------------------------------------------------------
 
@@ -32,6 +31,23 @@ Usage
 {{#let (element this.tagName) as |Tag|}}
   <Tag class="my-tag">hello world!</Tag>
 {{/let}}
+```
+
+You can also pass around the result of invoking this helper into any components
+that accepts "contextual components" as arguments:
+
+```hbs
+<MyComponent @tag={{element "span"}} />
+```
+
+```hbs
+{{!-- in my-component.hbs --}}
+{{#let @tag as |Tag|}}
+  <Tag class="my-tag">hello world!</Tag>
+{{/let}}
+
+{{!-- ...or more directly... --}}
+<@tag class="my-tag">hello world!</@tag>
 ```
 
 Contributing

@@ -51,12 +51,4 @@ QUnit.module('element helper: syntax errors', () => {
       new Error('the `element` helper does not take a block (on line 2 column 8)')
     );
   });
-
-  test('it cannot be used in a mustache position', assert => {
-    assert.throws(() => precompile(`
-        {{element "h1"}}
-      `),
-      new Error('the `element` helper cannot be appended to the DOM directly (on line 2 column 8)')
-    );
-  });
 });

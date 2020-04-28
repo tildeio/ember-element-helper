@@ -163,7 +163,7 @@ module('Integration | Helper | element', function(hooks) {
     this.set('tagName', 'h1');
 
     await render(hbs`
-      {{#let (element tagName) as |Tag|}}
+      {{#let (element this.tagName) as |Tag|}}
         <Tag id="content">rendered {{counter}} time(s)</Tag>
       {{/let}}
     `);
@@ -213,5 +213,55 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h1#content').hasText('rendered 5 time(s)');
     assert.dom('h2#content').doesNotExist();
     assert.dom('h3#content').doesNotExist();
+  });
+
+  test('it can be passed as argument', async function(assert) {
+    this.set('tagName', 'p');
+
+    await render(hbs`<ElementReceiver @tag={{element this.tagName}}>Test</ElementReceiver>`);
+
+    assert.dom('p#content').hasText('Test');
+
+    this.set('tagName', 'div');
+
+    await settled();
+
+    assert.dom('div#content').hasText('Test');
+
+    this.set('tagName', '');
+
+    await settled();
+
+    assert.equal(this.element.innerHTML.trim(), 'Test');
+
+    this.set('tagName', 'p');
+
+    await settled();
+
+    assert.dom('p#content').hasText('Test');
+  });
+
+  test('it can be invoked inline', async function(assert) {
+    this.set('tagName', 'p');
+
+    await render(hbs`{{element this.tagName}}`);
+
+    assert.dom('p').exists();
+
+    this.set('tagName', 'br');
+
+    await settled();
+
+    assert.dom('br').exists();
+
+    this.set('tagName', '');
+
+    assert.equal(this.element.innerHTML.trim(), '<!---->');
+
+    this.set('tagName', 'p');
+
+    await settled();
+
+    assert.dom('p').exists();
   });
 });
