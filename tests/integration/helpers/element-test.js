@@ -1,9 +1,10 @@
 import { module, test } from 'qunit';
+import { hbs } from 'ember-cli-htmlbars';
+import { gte } from 'ember-compatibility-helpers';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled } from '@ember/test-helpers';
+import { click, render, settled } from '@ember/test-helpers';
 import { helper } from '@ember/component/helper';
 import Ember from 'ember';
-import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Helper | element', function(hooks) {
   let originalOnerror;
@@ -57,67 +58,51 @@ module('Integration | Helper | element', function(hooks) {
     assert.equal(this.element.innerHTML.trim(), 'hello world!');
   });
 
-  test('it throws when pasased a number', async function() {
-    expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `123`)'));
-
+  test('it does not render anything when passed null', async function(assert) {
     await render(hbs`
-      <div>
-        {{#let (element 123) as |Tag|}}
-          <Tag id="content">hello world!</Tag>
-        {{/let}}
-      </div>
+      {{#let (element null) as |Tag|}}
+        <Tag id="content">hello world!</Tag>
+      {{/let}}
     `);
+
+    assert.equal(this.element.innerHTML.trim(), '<!---->');
   });
 
-  test('it throws when pasased a boolean', async function() {
-    expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `false`)'));
-
+  test('it does not render anything when passed undefined', async function(assert) {
     await render(hbs`
-      <div>
-        {{#let (element false) as |Tag|}}
-          <Tag id="content">hello world!</Tag>
-        {{/let}}
-      </div>
+      {{#let (element undefined) as |Tag|}}
+        <Tag id="content">hello world!</Tag>
+      {{/let}}
     `);
+
+    assert.equal(this.element.innerHTML.trim(), '<!---->');
   });
 
-  test('it throws when pasased null', async function() {
-    expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `null`)'));
+  if (gte('3.11.0-beta.0')) {
+    test('it works with element modifiers', async function(assert) {
+      let clicked = 0;
 
-    await render(hbs`
-      <div>
-        {{#let (element null) as |Tag|}}
-          <Tag id="content">hello world!</Tag>
-        {{/let}}
-      </div>
-    `);
-  });
+      this.set('didClick', () => clicked++);
 
-  test('it throws when pasased undefined', async function() {
-    expectEmberError(new Error('the argument passed to the `element` helper must be a string (you passed `undefined`)'));
+      // https://github.com/ember-cli/babel-plugin-htmlbars-inline-precompile/issues/103
+      await render(hbs('\
+        {{#let (element "button") as |Tag|}}\
+          <Tag type="button" id="action" {{on "click" this.didClick}}>hello world!</Tag>\
+        {{/let}}\
+      ', { insertRuntimeErrors: true }));
 
-    await render(hbs`
-      <div>
-        {{#let (element undefined) as |Tag|}}
-          <Tag id="content">hello world!</Tag>
-        {{/let}}
-      </div>
-    `);
-  });
+      assert.dom('button#action').hasAttribute('type', 'button').hasText('hello world!');
+      assert.strictEqual(clicked, 0, 'never clicked');
 
-  test('it throws when pasased an object', async function() {
-    expectEmberError(new Error('the argument passed to the `element` helper must be a string'));
+      await click('button#action');
 
-    this.set('value', Object.create(null));
+      assert.equal(clicked, 1, 'clicked once');
 
-    await render(hbs`
-      <div>
-        {{#let (element value) as |Tag|}}
-          <Tag id="content">hello world!</Tag>
-        {{/let}}
-      </div>
-    `);
-  });
+      await click('button#action');
+
+      assert.equal(clicked, 2, 'clicked twice');
+    });
+  }
 
   test('it can be rendered multiple times', async function(assert) {
     await render(hbs`
@@ -215,18 +200,20 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h3#content').doesNotExist();
   });
 
-  test('it can be passed as argument', async function(assert) {
+  test('it can be passed as argument and works with ...attributes', async function(assert) {
     this.set('tagName', 'p');
 
-    await render(hbs`<ElementReceiver @tag={{element this.tagName}}>Test</ElementReceiver>`);
+    await render(hbs`
+      <ElementReceiver @tag={{element this.tagName}} class="extra">Test</ElementReceiver>
+    `);
 
-    assert.dom('p#content').hasText('Test');
+    assert.dom('p#content').hasText('Test').hasClass('extra');
 
     this.set('tagName', 'div');
 
     await settled();
 
-    assert.dom('div#content').hasText('Test');
+    assert.dom('div#content').hasText('Test').hasClass('extra');
 
     this.set('tagName', '');
 
@@ -238,7 +225,7 @@ module('Integration | Helper | element', function(hooks) {
 
     await settled();
 
-    assert.dom('p#content').hasText('Test');
+    assert.dom('p#content').hasText('Test').hasClass('extra');
   });
 
   test('it can be invoked inline', async function(assert) {
@@ -263,5 +250,109 @@ module('Integration | Helper | element', function(hooks) {
     await settled();
 
     assert.dom('p').exists();
+  });
+
+  module('invalid usages', function() {
+    test('it requires at least one argument', async function() {
+      expectEmberError(new Error('Assertion Failed: The `element` helper takes a single positional argument'));
+
+      await render(hbs`
+        <div>
+          {{#let (element) as |Tag|}}
+            <Tag id="content">hello world!</Tag>
+          {{/let}}
+        </div>
+      `);
+    });
+
+    test('it requires no more than one argument', async function() {
+      expectEmberError(new Error('Assertion Failed: The `element` helper takes a single positional argument'));
+
+      await render(hbs`
+        <div>
+          {{#let (element "h1" "h2") as |Tag|}}
+            <Tag id="content">hello world!</Tag>
+          {{/let}}
+        </div>
+      `);
+    });
+
+    test('it does not take any named arguments', async function() {
+      expectEmberError(new Error('Assertion Failed: The `element` helper does not take any named arguments'));
+
+      await render(hbs`
+        <div>
+          {{#let (element "h1" id="content") as |Tag|}}
+            <Tag id="content">hello world!</Tag>
+          {{/let}}
+        </div>
+      `);
+    });
+
+    test('it does not take a block', async function(assert) {
+      // Before the EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS feature was enabled
+      // in 3.10, the "dash rule" short-circuited this assertion by accident,
+      // so this was just a no-op but no error was thrown.
+      if (gte('3.10.0-beta.0')) {
+        expectEmberError(new Error('Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'));
+      }
+
+      // Due to https://github.com/glimmerjs/glimmer-vm/pull/1073, we need to
+      // wrap the invalid block in a conditional to ensure the initial render
+      // complete without errors. This is fixed in Ember 3.16+.
+      this.set('showBlock', false);
+
+      await render(hbs`
+        <div>
+          {{#if this.showBlock}}
+            {{#element "h1"}}hello world!{{/element}}
+          {{/if}}
+        </div>
+      `);
+
+      assert.dom('h1').doesNotExist();
+
+      this.set('showBlock', true);
+
+      await settled();
+
+      assert.dom('h1').doesNotExist();
+    });
+
+    test('it throws when pasased a number', async function() {
+      expectEmberError(new Error('Assertion Failed: The argument passed to the `element` helper must be a string (you passed `123`)'));
+
+      await render(hbs`
+        <div>
+          {{#let (element 123) as |Tag|}}
+            <Tag id="content">hello world!</Tag>
+          {{/let}}
+        </div>
+      `);
+    });
+
+    test('it throws when pasased a boolean', async function() {
+      expectEmberError(new Error('Assertion Failed: The argument passed to the `element` helper must be a string (you passed `false`)'));
+
+      await render(hbs`
+        <div>
+          {{#let (element false) as |Tag|}}
+            <Tag id="content">hello world!</Tag>
+          {{/let}}
+        </div>
+      `);
+    });
+
+    test('it throws when pasased an object', async function() {
+      expectEmberError(new Error('Assertion Failed: The argument passed to the `element` helper must be a string'));
+
+      await render(hbs`
+        <div>
+          {{#let (element (hash)) as |Tag|}}
+            <Tag id="content">hello world!</Tag>
+          {{/let}}
+        </div>
+      `);
+    });
   });
 });

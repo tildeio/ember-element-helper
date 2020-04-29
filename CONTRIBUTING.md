@@ -14,10 +14,9 @@
 
 ## Running tests
 
-* `yarn test:ember` – Runs the test suite on the current Ember version
-* `yarn test:ember --server` – Runs the test suite in "watch mode"
+* `yarn test` – Runs the test suite on the current Ember version
+* `yarn test --server` – Runs the test suite in "watch mode"
 * `yarn test:all` – Runs the test suite against multiple Ember versions
-* `yarn test:node` – Runs the additional test suite for syntax errors
 
 ## Running the dummy application
 
