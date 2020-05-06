@@ -1,4 +1,5 @@
 import Helper from '@ember/component/helper';
+import { assert, runInDebug } from '@ember/debug';
 
 function UNINITIALIZED() {}
 
@@ -6,31 +7,42 @@ export default Helper.extend({
   init() {
     this._super(...arguments);
     this.tagName = UNINITIALIZED;
-    this.componentName = UNINITIALIZED;
+    this.componentName = null;
   },
 
-  compute([tagName]) {
-    if (tagName === this.tagName) {
-      return this.componentName;
-    } else if (typeof tagName !== 'string') {
-      let message = 'the argument passed to the `element` helper must be a string';
+  compute(params, hash) {
+    assert('The `element` helper takes a single positional argument', params.length === 1);
+    assert('The `element` helper does not take any named arguments', Object.keys(hash).length === 0);
 
-      try {
-        message += ` (you passed \`${tagName}\`)`;
-      } catch (e) {
-        // ignore
-      }
+    let tagName = params[0];
 
-      throw new Error(message);
-    } else {
+    if (tagName !== this.tagName) {
       this.tagName = tagName;
 
-      // return a different component name to force a teardown
-      if (this.componentName === '-dynamic-element') {
-        return this.componentName = '-dynamic-element-alt';
+      if (typeof tagName === 'string') {
+        // return a different component name to force a teardown
+        if (this.componentName === '-dynamic-element') {
+          this.componentName = '-dynamic-element-alt';
+        } else {
+          this.componentName = '-dynamic-element';
+        }
       } else {
-        return this.componentName = '-dynamic-element';
+        this.componentName = null;
+
+        runInDebug(() => {
+          let message = 'The argument passed to the `element` helper must be a string';
+
+          try {
+            message += ` (you passed \`${tagName}\`)`;
+          } catch (e) {
+            // ignore
+          }
+
+          assert(message, tagName === undefined || tagName === null);
+        });
       }
     }
+
+    return this.componentName;
   }
 });

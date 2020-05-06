@@ -5,17 +5,54 @@ ember-element-helper
 
 Dynamic element helper for Glimmer templates.
 
-See [this RFC comment](https://github.com/emberjs/rfcs/pull/389#issuecomment-429691544)
-for more context and motivation.
+This addon provides a ~~polyfill~~ high fidelity reference implementation of
+[RFC #389](https://github.com/emberjs/rfcs/pull/389), including the proposed
+amendments in [RFC PR #620](https://github.com/emberjs/rfcs/pull/620).
 
+Please note that the while [RFC #389](https://github.com/emberjs/rfcs/pull/389)
+has been approved, it has not been implmented in Ember.js yet. As such, the
+feature is still subject to change based on implementation feedback. In
+addition, the amendments in [RFC PR #620](https://github.com/emberjs/rfcs/pull/620)
+are still pending approval at this point.
+
+When this feature is implemented in Ember.js, we will release a 1.0 version of
+this addon as a true polyfill for the feature, allowing the feature to be used
+on older Ember.js versions and be completely inert on newer versions where the
+official implementation is available.
 
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.4 or above
+* Ember.js v3.4 or above (with some limitations, see below)
 * Ember CLI v2.13 or above
 * Node.js v10 or above
 
+Limitations
+------------------------------------------------------------------------------
+
+This implementation has the following known limitations:
+
+* By default, an auto-generated `id` attribute will be added to the element
+  (e.g. `id="ember123"`). It is possible to override this by providing an
+  `id` attribute when invoking the component (e.g. `<Tag id="my-id" />`).
+  However, it is not possible to remove the `id` attribute completely. The
+  proposed helper will not have this behavior, as such this should not be
+  relied upon (e.g. in CSS and `qunit-dom` selectors).
+
+* The element will have an `ember-view` class (i.e. `class="ember-view"`).
+  This is in addition and merged with the class attribute provided when
+  invoking the component (e.g. `<Tag class="my-class" />` will result in
+  something like `<div class="ember-view my-class" />`). It is not possible
+  to remove the `ember-view` class. The proposed helper will not have this
+  behavior, as such this should not be relied upon (e.g. in CSS and `qunit-dom`
+  selectors).
+
+* In Ember versions before 3.11, modifiers cannot be passed to the element,
+  even with addons such as the [modifier manager](https://github.com/ember-polyfills/ember-modifier-manager-polyfill)
+  and [on modifier](https://github.com/buschtoens/ember-on-modifier) polyfills
+  are used. Doing so requires [RFC #435](https://github.com/emberjs/rfcs/blob/master/text/0435-modifier-splattributes.md)
+  which is first available on Ember 3.11. This is an Ember.js limitation,
+  unrelated to this addon.
 
 Installation
 ------------------------------------------------------------------------------

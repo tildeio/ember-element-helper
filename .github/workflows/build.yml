@@ -16,6 +16,7 @@ jobs:
     env:
       CI: 'true'
     strategy:
+      fail-fast: false
       matrix:
         scenario:
           - default
@@ -51,9 +52,7 @@ jobs:
         run: yarn lint:js
       - name: Build
         run: yarn ember build --environment test
-      - name: Run test (node)
-        run: yarn test:node
-      - name: Run test (ember)
+      - name: Run test
         # Due to a bug in ember-cli, running `ember test` with `--path` doesn't set `EMBER_ENV=test`
         # See https://github.com/ember-cli/ember-cli/issues/8922
-        run: EMBER_ENV=test yarn test:ember --path dist
+        run: EMBER_ENV=test yarn test --path dist
