@@ -11,9 +11,7 @@ amendments in [RFC PR #620](https://github.com/emberjs/rfcs/pull/620).
 
 Please note that the while [RFC #389](https://github.com/emberjs/rfcs/pull/389)
 has been approved, it has not been implmented in Ember.js yet. As such, the
-feature is still subject to change based on implementation feedback. In
-addition, the amendments in [RFC PR #620](https://github.com/emberjs/rfcs/pull/620)
-are still pending approval at this point.
+feature is still subject to change based on implementation feedback.
 
 When this feature is implemented in Ember.js, we will release a 1.0 version of
 this addon as a true polyfill for the feature, allowing the feature to be used
