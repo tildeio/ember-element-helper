@@ -8,7 +8,7 @@ export default helper(function() {
   // so if this helper is invoked directly, something is wrong.
 
   assert(
-    'The `element` helper polyfill encounted an unexpected error. ' +
+    'The `element` helper polyfill encountered an unexpected error. ' +
     'Please report the issue at http://github.com/tildeio/ember-element-helper ' +
     'with the usage and conditions that caused this error.'
   );
