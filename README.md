@@ -46,9 +46,9 @@ This implementation has the following known limitations:
   selectors).
 
 * In Ember versions before 3.11, modifiers cannot be passed to the element,
-  even with addons such as the [modifier manager](https://github.com/ember-polyfills/ember-modifier-manager-polyfill)
-  and the [on modifier](https://github.com/buschtoens/ember-on-modifier) polyfills.
-  Doing so requires [RFC #435](https://github.com/emberjs/rfcs/blob/master/text/0435-modifier-splattributes.md)
+  even when addons such as the [modifier manager](https://github.com/ember-polyfills/ember-modifier-manager-polyfill)
+  and [on modifier](https://github.com/buschtoens/ember-on-modifier) polyfills
+  are used. Doing so requires [RFC #435](https://github.com/emberjs/rfcs/blob/master/text/0435-modifier-splattributes.md)
   which is first available on Ember 3.11. This is an Ember.js limitation,
   unrelated to this addon.
 
