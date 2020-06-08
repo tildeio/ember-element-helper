@@ -9,7 +9,7 @@ This addon provides a ~~polyfill~~ high fidelity reference implementation of
 [RFC #389](https://github.com/emberjs/rfcs/pull/389), including the proposed
 amendments in [RFC PR #620](https://github.com/emberjs/rfcs/pull/620).
 
-Please note that while the [RFC #389](https://github.com/emberjs/rfcs/pull/389)
+Please note that while [RFC #389](https://github.com/emberjs/rfcs/pull/389)
 has been approved, it has not been implmented in Ember.js yet. As such, the
 feature is still subject to change based on implementation feedback.
 
