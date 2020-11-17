@@ -89,7 +89,7 @@ module('Integration | Helper | element', function(hooks) {
         {{#let (element "button") as |Tag|}}\
           <Tag type="button" id="action" {{on "click" this.didClick}}>hello world!</Tag>\
         {{/let}}\
-      ', { insertRuntimeErrors: true }));
+      '));
 
       assert.dom('button#action').hasAttribute('type', 'button').hasText('hello world!');
       assert.strictEqual(clicked, 0, 'never clicked');
@@ -125,13 +125,13 @@ module('Integration | Helper | element', function(hooks) {
       {{/let}}
 
       {{#let (element "h2") as |h2|}}
-        {{#let (component h2) as |Tag|}}
+        {{#let (ensure-safe-component h2) as |Tag|}}
           <Tag id="content-2">world</Tag>
         {{/let}}
       {{/let}}
 
       {{#let (element "h3") as |h3|}}
-        {{#component h3 id="content-3"}}!!!!!{{/component}}
+        {{#component (ensure-safe-component h3) id="content-3"}}!!!!!{{/component}}
       {{/let}}
     `);
 

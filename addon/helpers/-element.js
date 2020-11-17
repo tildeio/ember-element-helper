@@ -1,5 +1,6 @@
 import Helper from '@ember/component/helper';
 import { assert, runInDebug } from '@ember/debug';
+import Component from '@ember/component';
 
 function UNINITIALIZED() {}
 
@@ -7,7 +8,6 @@ export default Helper.extend({
   init() {
     this._super(...arguments);
     this.tagName = UNINITIALIZED;
-    this.componentName = null;
   },
 
   compute(params, hash) {
@@ -20,15 +20,8 @@ export default Helper.extend({
       this.tagName = tagName;
 
       if (typeof tagName === 'string') {
-        // return a different component name to force a teardown
-        if (this.componentName === '-dynamic-element') {
-          this.componentName = '-dynamic-element-alt';
-        } else {
-          this.componentName = '-dynamic-element';
-        }
+        return Component.extend();
       } else {
-        this.componentName = null;
-
         runInDebug(() => {
           let message = 'The argument passed to the `element` helper must be a string';
 
@@ -39,10 +32,10 @@ export default Helper.extend({
           }
 
           assert(message, tagName === undefined || tagName === null);
+
+          return null;
         });
       }
     }
-
-    return this.componentName;
   }
 });
