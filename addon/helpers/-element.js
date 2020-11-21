@@ -4,10 +4,14 @@ import Component from '@ember/component';
 
 function UNINITIALIZED() {}
 
+const DynamicElement = Component.extend();
+const DynamicElementAlt = Component.extend();
+
 export default Helper.extend({
   init() {
     this._super(...arguments);
     this.tagName = UNINITIALIZED;
+    this.componentClass = null;
   },
 
   compute(params, hash) {
@@ -20,8 +24,15 @@ export default Helper.extend({
       this.tagName = tagName;
 
       if (typeof tagName === 'string') {
-        return Component.extend();
+        // return a different component name to force a teardown
+        if (this.componentClass === DynamicElement) {
+          this.componentClass = DynamicElementAlt;
+        } else {
+          this.componentClass = DynamicElement;
+        }
       } else {
+        this.componentClass = null;
+
         runInDebug(() => {
           let message = 'The argument passed to the `element` helper must be a string';
 
@@ -32,10 +43,10 @@ export default Helper.extend({
           }
 
           assert(message, tagName === undefined || tagName === null);
-
-          return null;
         });
       }
     }
+
+    return this.componentClass;
   }
 });
