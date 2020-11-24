@@ -1,10 +1,11 @@
 import { module, test } from 'qunit';
 import { hbs } from 'ember-cli-htmlbars';
-import { gte } from 'ember-compatibility-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, render, settled } from '@ember/test-helpers';
 import { helper } from '@ember/component/helper';
 import Ember from 'ember';
+import { macroCondition, dependencySatisfies } from '@embroider/macros';
+
 
 module('Integration | Helper | element', function(hooks) {
   let originalOnerror;
@@ -78,7 +79,7 @@ module('Integration | Helper | element', function(hooks) {
     assert.equal(this.element.innerHTML.trim(), '<!---->');
   });
 
-  if (gte('3.11.0-beta.0')) {
+  if (macroCondition(dependencySatisfies('ember-source', '^3.11.0'))) {
     test('it works with element modifiers', async function(assert) {
       let clicked = 0;
 
@@ -89,7 +90,7 @@ module('Integration | Helper | element', function(hooks) {
         {{#let (element "button") as |Tag|}}\
           <Tag type="button" id="action" {{on "click" this.didClick}}>hello world!</Tag>\
         {{/let}}\
-      '));
+      ', { insertRuntimeErrors: true }));
 
       assert.dom('button#action').hasAttribute('type', 'button').hasText('hello world!');
       assert.strictEqual(clicked, 0, 'never clicked');
@@ -293,9 +294,9 @@ module('Integration | Helper | element', function(hooks) {
       // Before the EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS feature was enabled
       // in 3.10, the "dash rule" short-circuited this assertion by accident,
       // so this was just a no-op but no error was thrown.
-      if (gte('3.25.0-beta.0')) {
+      if (macroCondition(dependencySatisfies('ember-source', '^3.25.0'))) {
         expectEmberError(new Error('Attempted to resolve `element`, which was expected to be a component, but nothing was found.'));
-      } else if (gte('3.10.0-beta.0')) {
+      } else if (macroCondition(dependencySatisfies('ember-source', '^3.10.0'))) {
         expectEmberError(new Error('Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'));
       }
 
