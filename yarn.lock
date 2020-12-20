@@ -1939,44 +1939,6 @@
     ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-test-waiters "^1.1.1"
 
-"@embroider/core@0.32.0":
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/@embroider/core/-/core-0.32.0.tgz#87a62f7d566fdfcf990fb10644e0fb6b4380257e"
-  integrity sha512-YDdzmsHYb3SJZ7d1fWsC+G7VrrHmjUEQ0hp/aa9RJ3uzWXKlfV7xxCIrM3Aifp4TuTYcKEZdnYrgYQfLTJfI0Q==
-  dependencies:
-    "@babel/core" "^7.12.3"
-    "@babel/parser" "^7.12.3"
-    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
-    "@babel/plugin-transform-runtime" "^7.12.1"
-    "@babel/runtime" "^7.12.5"
-    "@babel/traverse" "^7.12.1"
-    "@babel/types" "^7.12.1"
-    "@embroider/macros" "0.32.0"
-    assert-never "^1.1.0"
-    babel-plugin-syntax-dynamic-import "^6.18.0"
-    broccoli-node-api "^1.7.0"
-    broccoli-persistent-filter "^3.1.2"
-    broccoli-plugin "^4.0.1"
-    broccoli-source "^3.0.0"
-    debug "^3.1.0"
-    fast-sourcemap-concat "^1.4.0"
-    filesize "^4.1.2"
-    fs-extra "^7.0.1"
-    fs-tree-diff "^2.0.0"
-    handlebars "^4.4.2"
-    js-string-escape "^1.0.1"
-    jsdom "^16.4.0"
-    json-stable-stringify "^1.0.1"
-    lodash "^4.17.10"
-    pkg-up "^2.0.0"
-    resolve "^1.8.1"
-    resolve-package-path "^1.2.2"
-    semver "^7.3.2"
-    strip-bom "^3.0.0"
-    typescript-memoize "^1.0.0-alpha.3"
-    walk-sync "^1.1.3"
-    wrap-legacy-hbs-plugin-if-needed "^1.0.1"
-
 "@embroider/core@0.35.0":
   version "0.35.0"
   resolved "https://registry.yarnpkg.com/@embroider/core/-/core-0.35.0.tgz#92b4da43910b5db9df428b5c368de8f3b2870900"
@@ -2050,21 +2012,6 @@
     typescript-memoize "^1.0.0-alpha.3"
     walk-sync "^1.1.3"
 
-"@embroider/macros@0.32.0":
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-0.32.0.tgz#a794daacd45d352df8a7af51220d3887480328fa"
-  integrity sha512-bZE0UJz0l0loS2JmpeVun/hCvcTgc35ieZIdQ44lEkSLpfGY1mJXSVo4X2kOp3VauKQMQCPYW/1DtlJ89maO7A==
-  dependencies:
-    "@babel/core" "^7.12.3"
-    "@babel/traverse" "^7.12.1"
-    "@babel/types" "^7.12.1"
-    "@embroider/core" "0.32.0"
-    assert-never "^1.1.0"
-    ember-cli-babel "^7.23.0"
-    lodash "^4.17.10"
-    resolve "^1.8.1"
-    semver "^7.3.2"
-
 "@embroider/macros@0.35.0", "@embroider/macros@^0.35.0":
   version "0.35.0"
   resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-0.35.0.tgz#7b02395eac704324bcd67de3cd532401374a61b1"
@@ -2100,12 +2047,12 @@
     lodash "^4.17.20"
     resolve "^1.17.0"
 
-"@embroider/util@^0.32.0":
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/@embroider/util/-/util-0.32.0.tgz#b0ab05315894a4582078697dd0593b4f3fa7de5c"
-  integrity sha512-U4BxN7Wo56dZ6+RdmDyz1ZS5S7nTigzbSDXoxKbJwX3H0vpJO5DMJiElwuWus2b2sJw1ei3Bu7rhGuIkD7Lflg==
+"@embroider/util@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@embroider/util/-/util-0.35.0.tgz#46fbd676257caccc6bf5f001ee77a1166ba12c0d"
+  integrity sha512-/FOIlhx9BceY0lN7DYO6a6NYkSqUcVhb+N9CxeAatLei1U/X2/19HEEgmp4jofZrURd5DZcbLo2x0xtfPwoebw==
   dependencies:
-    "@embroider/macros" "0.32.0"
+    "@embroider/macros" "0.35.0"
     ember-cli-babel "^7.22.1"
 
 "@glimmer/component@^1.0.0":
