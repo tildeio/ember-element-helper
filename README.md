@@ -10,7 +10,7 @@ This addon provides a ~~polyfill~~ high fidelity reference implementation of
 amendments in [RFC PR #620](https://github.com/emberjs/rfcs/pull/620).
 
 Please note that while [RFC #389](https://github.com/emberjs/rfcs/pull/389)
-has been approved, it has not been implmented in Ember.js yet. As such, the
+has been approved, it has not been implemented in Ember.js yet. As such, the
 feature is still subject to change based on implementation feedback.
 
 When this feature is implemented in Ember.js, we will release a 1.0 version of
