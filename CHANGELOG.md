@@ -1,3 +1,12 @@
+## v0.5.5 (2021-06-14)
+
+#### :house: Internal
+* [#60](https://github.com/tildeio/ember-element-helper/pull/60) Fix publishing automation ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 1
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+
+
 ## v0.5.4 (2021-06-14)
 
 #### :bug: Bug Fix
