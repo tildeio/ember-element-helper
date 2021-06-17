@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: 'true'
+
+      # ensure we cannot regress parallization
+      THROW_UNLESS_PARALLELIZABLE: '1'
+
     strategy:
       fail-fast: false
       matrix:
