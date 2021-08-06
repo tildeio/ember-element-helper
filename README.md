@@ -59,6 +59,12 @@ Installation
 ember install ember-element-helper
 ```
 
+If you use this add-on inside another add-on, you might need to install it as a production dependency:
+
+```
+ember install ember-element-helper --save
+```
+
 Usage
 ------------------------------------------------------------------------------
 
