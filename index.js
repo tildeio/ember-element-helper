@@ -4,7 +4,7 @@ module.exports = {
   name: require('./package').name,
 
   setupPreprocessorRegistry(_type, registry) {
-    let pluginObj  = this._buildPlugin();
+    let pluginObj = this._buildPlugin();
     pluginObj.parallelBabel = {
       requireFile: __filename,
       buildUsing: '_buildPlugin',
@@ -17,9 +17,9 @@ module.exports = {
     return {
       name: 'element-helper-syntax',
       plugin: require('./lib/element-helper-syntax-plugin'),
-      baseDir: function() {
+      baseDir: function () {
         return __dirname;
-      }
+      },
     };
-  }
+  },
 };
