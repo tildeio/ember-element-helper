@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies (yarn)
         if: matrix.scenario == 'default-with-lockfile'
         run: yarn install --non-interactive --frozen-lockfile
-      - name: Install dependencies (yarn)
+      - name: Install dependencies (yarn floating)
         if: matrix.scenario != 'default-with-lockfile'
         run: yarn install --non-interactive --no-lockfile
       - name: Setup ember-try scenario
@@ -60,7 +60,7 @@ jobs:
       - name: Run test
         # Due to a bug in ember-cli, running `ember test` with `--path` doesn't set `EMBER_ENV=test`
         # See https://github.com/ember-cli/ember-cli/issues/8922
-        run: EMBER_ENV=test yarn test --path dist
+        run: EMBER_ENV=test yarn test:ember --path dist
 
   publish:
     name: Publish
