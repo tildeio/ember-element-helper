@@ -15,8 +15,14 @@ export default Helper.extend({
   },
 
   compute(params, hash) {
-    assert('The `element` helper takes a single positional argument', params.length === 1);
-    assert('The `element` helper does not take any named arguments', Object.keys(hash).length === 0);
+    assert(
+      'The `element` helper takes a single positional argument',
+      params.length === 1
+    );
+    assert(
+      'The `element` helper does not take any named arguments',
+      Object.keys(hash).length === 0
+    );
 
     let tagName = params[0];
 
@@ -34,7 +40,8 @@ export default Helper.extend({
         this.componentClass = null;
 
         runInDebug(() => {
-          let message = 'The argument passed to the `element` helper must be a string';
+          let message =
+            'The argument passed to the `element` helper must be a string';
 
           try {
             message += ` (you passed \`${tagName}\`)`;
@@ -48,5 +55,5 @@ export default Helper.extend({
     }
 
     return this.componentClass;
-  }
+  },
 });

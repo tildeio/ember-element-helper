@@ -15,7 +15,9 @@ module.exports = function (defaults) {
   */
 
   if (app.env === 'test') {
-    app.import('node_modules/ember-source/dist/ember-template-compiler.js', { type: 'test' });
+    app.import('node_modules/ember-source/dist/ember-template-compiler.js', {
+      type: 'test',
+    });
   }
 
   const { maybeEmbroider } = require('@embroider/test-setup');
