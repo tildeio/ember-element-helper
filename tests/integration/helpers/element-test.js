@@ -4,7 +4,6 @@ import { setupRenderingTest } from 'ember-qunit';
 import { click, render, settled } from '@ember/test-helpers';
 import { helper } from '@ember/component/helper';
 import Ember from 'ember';
-import { macroCondition, dependencySatisfies } from '@embroider/macros';
 
 module('Integration | Helper | element', function (hooks) {
   let originalOnerror;
@@ -80,39 +79,37 @@ module('Integration | Helper | element', function (hooks) {
     assert.strictEqual(this.element.innerHTML.trim(), '<!---->');
   });
 
-  if (macroCondition(dependencySatisfies('ember-source', '^3.11.0-beta.0'))) {
-    test('it works with element modifiers', async function (assert) {
-      let clicked = 0;
+  test('it works with element modifiers', async function (assert) {
+    let clicked = 0;
 
-      this.set('didClick', () => clicked++);
+    this.set('didClick', () => clicked++);
 
-      // https://github.com/ember-cli/babel-plugin-htmlbars-inline-precompile/issues/103
-      await render(
-        hbs(
-          '\
+    // https://github.com/ember-cli/babel-plugin-htmlbars-inline-precompile/issues/103
+    await render(
+      hbs(
+        '\
         {{#let (element "button") as |Tag|}}\
           <Tag type="button" id="action" {{on "click" this.didClick}}>hello world!</Tag>\
         {{/let}}\
       ',
-          { insertRuntimeErrors: true }
-        )
-      );
+        { insertRuntimeErrors: true }
+      )
+    );
 
-      assert
-        .dom('button#action')
-        .hasAttribute('type', 'button')
-        .hasText('hello world!');
-      assert.strictEqual(clicked, 0, 'never clicked');
+    assert
+      .dom('button#action')
+      .hasAttribute('type', 'button')
+      .hasText('hello world!');
+    assert.strictEqual(clicked, 0, 'never clicked');
 
-      await click('button#action');
+    await click('button#action');
 
-      assert.strictEqual(clicked, 1, 'clicked once');
+    assert.strictEqual(clicked, 1, 'clicked once');
 
-      await click('button#action');
+    await click('button#action');
 
-      assert.strictEqual(clicked, 2, 'clicked twice');
-    });
-  }
+    assert.strictEqual(clicked, 2, 'clicked twice');
+  });
 
   test('it can be rendered multiple times', async function (assert) {
     await render(hbs`
