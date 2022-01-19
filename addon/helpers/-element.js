@@ -1,9 +1,12 @@
 import Helper from '@ember/component/helper';
 import { assert, runInDebug } from '@ember/debug';
-import templateOnly from '@ember/component/template-only';
+// eslint-disable-next-line ember/no-classic-components
+import EmberComponent from '@ember/component';
 
-const DynamicComponent = templateOnly();
-const DynamicComponentAlt = templateOnly();
+// eslint-disable-next-line ember/require-tagless-components
+class DynamicElement extends EmberComponent {}
+// eslint-disable-next-line ember/require-tagless-components
+class DynamicElementAlt extends EmberComponent {}
 
 function UNINITIALIZED() {}
 
@@ -31,10 +34,10 @@ export default class ElementHelper extends Helper {
 
       if (typeof tagName === 'string') {
         // return a different component name to force a teardown
-        if (this.componentClass === DynamicComponent) {
-          this.componentClass = DynamicComponentAlt;
+        if (this.componentClass === DynamicElement) {
+          this.componentClass = DynamicElementAlt;
         } else {
-          this.componentClass = DynamicComponent;
+          this.componentClass = DynamicElement;
         }
       } else {
         this.componentClass = null;
