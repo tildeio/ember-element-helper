@@ -1,18 +1,18 @@
 import Helper from '@ember/component/helper';
 import { assert, runInDebug } from '@ember/debug';
-import Component from '@ember/component';
+import templateOnly from '@ember/component/template-only';
+
+const DynamicComponent = templateOnly();
+const DynamicComponentAlt = templateOnly();
 
 function UNINITIALIZED() {}
 
-const DynamicElement = Component.extend();
-const DynamicElementAlt = Component.extend();
-
-export default Helper.extend({
-  init() {
-    this._super(...arguments);
+export default class ElementHelper extends Helper {
+  constructor() {
+    super(...arguments);
     this.tagName = UNINITIALIZED;
     this.componentClass = null;
-  },
+  }
 
   compute(params, hash) {
     assert(
@@ -31,10 +31,10 @@ export default Helper.extend({
 
       if (typeof tagName === 'string') {
         // return a different component name to force a teardown
-        if (this.componentClass === DynamicElement) {
-          this.componentClass = DynamicElementAlt;
+        if (this.componentClass === DynamicComponent) {
+          this.componentClass = DynamicComponentAlt;
         } else {
-          this.componentClass = DynamicElement;
+          this.componentClass = DynamicComponent;
         }
       } else {
         this.componentClass = null;
@@ -55,5 +55,5 @@ export default Helper.extend({
     }
 
     return this.componentClass;
-  },
-});
+  }
+}
