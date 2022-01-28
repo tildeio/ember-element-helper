@@ -4,6 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { click, render, settled } from '@ember/test-helpers';
 import { helper } from '@ember/component/helper';
 import Ember from 'ember';
+import { macroCondition, dependencySatisfies } from '@embroider/macros';
 
 module('Integration | Helper | element', function (hooks) {
   let originalOnerror;
@@ -312,19 +313,43 @@ module('Integration | Helper | element', function (hooks) {
     });
 
     test('it does not take a block', async function (assert) {
-      expectEmberError(
-        new Error(
-          'Attempted to resolve `element`, which was expected to be a component, but nothing was found.'
-        )
-      );
+      // Before the EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS feature was enabled
+      // in 3.10, the "dash rule" short-circuited this assertion by accident,
+      // so this was just a no-op but no error was thrown.
+      if (
+        macroCondition(dependencySatisfies('ember-source', '>=3.25.0-beta.0'))
+      ) {
+        expectEmberError(
+          new Error(
+            'Attempted to resolve `element`, which was expected to be a component, but nothing was found.'
+          )
+        );
+      } else if (
+        macroCondition(dependencySatisfies('ember-source', '>=3.10.0-beta.0'))
+      ) {
+        expectEmberError(
+          new Error(
+            'Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'
+          )
+        );
+      }
+
+      // Due to https://github.com/glimmerjs/glimmer-vm/pull/1073, we need to
+      // wrap the invalid block in a conditional to ensure the initial render
+      // complete without errors. This is fixed in Ember 3.16+.
+      this.set('showBlock', false);
 
       await render(hbs`
         <div>
+          {{#if this.showBlock}}
             {{#element "h1"}}hello world!{{/element}}
+          {{/if}}
         </div>
       `);
 
       assert.dom('h1').doesNotExist();
+
+      this.set('showBlock', true);
 
       await settled();
 
