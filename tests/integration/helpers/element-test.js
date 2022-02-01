@@ -294,9 +294,9 @@ module('Integration | Helper | element', function(hooks) {
       // Before the EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS feature was enabled
       // in 3.10, the "dash rule" short-circuited this assertion by accident,
       // so this was just a no-op but no error was thrown.
-      if (macroCondition(dependencySatisfies('ember-source', '>=3.25.0-beta.0'))) {
+      if (macroCondition(dependencySatisfies('ember-source', '>= 3.25.0-beta.0'))) {
         expectEmberError(new Error('Attempted to resolve `element`, which was expected to be a component, but nothing was found.'));
-      } else if (macroCondition(dependencySatisfies('ember-source', '>=3.10.0-beta.0'))) {
+      } else if (macroCondition(dependencySatisfies('ember-source', '>= 3.10.0-beta.0'))) {
         expectEmberError(new Error('Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'));
       }
 
