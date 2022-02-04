@@ -230,7 +230,7 @@ module('Integration | Helper | element', function (hooks) {
 
     await settled();
 
-    assert.strictEqual(this.element.innerHTML.trim(), 'Test');
+    assert.strictEqual(this.element.innerText.trim(), 'Test');
 
     this.set('tagName', 'p');
 
