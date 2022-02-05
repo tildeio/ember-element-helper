@@ -6,24 +6,25 @@ import { helper } from '@ember/component/helper';
 import Ember from 'ember';
 import { macroCondition, dependencySatisfies } from '@embroider/macros';
 
-
-module('Integration | Helper | element', function(hooks) {
+module('Integration | Helper | element', function (hooks) {
   let originalOnerror;
   let expectEmberError;
   let expectedEmberErrors;
 
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(assert => {
+  hooks.beforeEach((assert) => {
     originalOnerror = Ember.onerror;
 
-    expectEmberError = function(expectation) {
+    expectEmberError = function (expectation) {
       let _onerror = Ember.onerror;
 
       expectedEmberErrors.push(expectation);
 
-      Ember.onerror = function(error) {
-        assert.throws(() => { throw error; }, expectedEmberErrors.pop());
+      Ember.onerror = function (error) {
+        assert.throws(() => {
+          throw error;
+        }, expectedEmberErrors.pop());
         Ember.onerror = _onerror;
       };
     };
@@ -31,15 +32,15 @@ module('Integration | Helper | element', function(hooks) {
     expectedEmberErrors = [];
   });
 
-  hooks.afterEach(assert => {
+  hooks.afterEach((assert) => {
     Ember.onerror = originalOnerror;
 
-    expectedEmberErrors.forEach(expected => {
+    expectedEmberErrors.forEach((expected) => {
       assert.strictEqual(undefined, expected);
     });
   });
 
-  test('it renders a tag with the given tag name', async function(assert) {
+  test('it renders a tag with the given tag name', async function (assert) {
     await render(hbs`
       {{#let (element "h1") as |Tag|}}
         <Tag id="content">hello world!</Tag>
@@ -49,63 +50,69 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h1#content').hasText('hello world!');
   });
 
-  test('it does not render any tags when passed an empty string', async function(assert) {
+  test('it does not render any tags when passed an empty string', async function (assert) {
     await render(hbs`
       {{#let (element "") as |Tag|}}
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
 
-    assert.equal(this.element.innerHTML.trim(), 'hello world!');
+    assert.strictEqual(this.element.innerHTML.trim(), 'hello world!');
   });
 
-  test('it does not render anything when passed null', async function(assert) {
+  test('it does not render anything when passed null', async function (assert) {
     await render(hbs`
       {{#let (element null) as |Tag|}}
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
 
-    assert.equal(this.element.innerHTML.trim(), '<!---->');
+    assert.strictEqual(this.element.innerHTML.trim(), '<!---->');
   });
 
-  test('it does not render anything when passed undefined', async function(assert) {
+  test('it does not render anything when passed undefined', async function (assert) {
     await render(hbs`
       {{#let (element undefined) as |Tag|}}
         <Tag id="content">hello world!</Tag>
       {{/let}}
     `);
 
-    assert.equal(this.element.innerHTML.trim(), '<!---->');
+    assert.strictEqual(this.element.innerHTML.trim(), '<!---->');
   });
 
-  if (macroCondition(dependencySatisfies('ember-source', '^3.11.0-beta.0'))) {
-    test('it works with element modifiers', async function(assert) {
-      let clicked = 0;
+  test('it works with element modifiers', async function (assert) {
+    let clicked = 0;
 
-      this.set('didClick', () => clicked++);
+    this.set('didClick', () => clicked++);
 
-      // https://github.com/ember-cli/babel-plugin-htmlbars-inline-precompile/issues/103
-      await render(hbs('\
+    // https://github.com/ember-cli/babel-plugin-htmlbars-inline-precompile/issues/103
+    await render(
+      hbs(
+        '\
         {{#let (element "button") as |Tag|}}\
           <Tag type="button" id="action" {{on "click" this.didClick}}>hello world!</Tag>\
         {{/let}}\
-      ', { insertRuntimeErrors: true }));
+      ',
+        { insertRuntimeErrors: true }
+      )
+    );
 
-      assert.dom('button#action').hasAttribute('type', 'button').hasText('hello world!');
-      assert.strictEqual(clicked, 0, 'never clicked');
+    assert
+      .dom('button#action')
+      .hasAttribute('type', 'button')
+      .hasText('hello world!');
+    assert.strictEqual(clicked, 0, 'never clicked');
 
-      await click('button#action');
+    await click('button#action');
 
-      assert.equal(clicked, 1, 'clicked once');
+    assert.strictEqual(clicked, 1, 'clicked once');
 
-      await click('button#action');
+    await click('button#action');
 
-      assert.equal(clicked, 2, 'clicked twice');
-    });
-  }
+    assert.strictEqual(clicked, 2, 'clicked twice');
+  });
 
-  test('it can be rendered multiple times', async function(assert) {
+  test('it can be rendered multiple times', async function (assert) {
     await render(hbs`
       {{#let (element "h1") as |Tag|}}
         <Tag id="content-1">hello</Tag>
@@ -119,7 +126,7 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h1#content-3').hasText('!!!!!');
   });
 
-  test('it can be passed to the component helper', async function(assert) {
+  test('it can be passed to the component helper', async function (assert) {
     await render(hbs`
       {{#let (component (element "h1")) as |Tag|}}
         <Tag id="content-1">hello</Tag>
@@ -141,10 +148,13 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h3#content-3').hasText('!!!!!');
   });
 
-  test('it renders when the tag name changes', async function(assert) {
+  test('it renders when the tag name changes', async function (assert) {
     let count = 0;
 
-    this.owner.register('helper:counter', helper(() => ++count));
+    this.owner.register(
+      'helper:counter',
+      helper(() => ++count)
+    );
 
     this.set('tagName', 'h1');
 
@@ -190,7 +200,7 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h2#content').doesNotExist();
     assert.dom('h3#content').doesNotExist();
 
-    assert.equal(this.element.innerHTML.trim(), 'rendered 4 time(s)');
+    assert.strictEqual(this.element.innerHTML.trim(), 'rendered 4 time(s)');
 
     this.set('tagName', 'h1');
 
@@ -201,7 +211,7 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('h3#content').doesNotExist();
   });
 
-  test('it can be passed as argument and works with ...attributes', async function(assert) {
+  test('it can be passed as argument and works with ...attributes', async function (assert) {
     this.set('tagName', 'p');
 
     await render(hbs`
@@ -220,7 +230,7 @@ module('Integration | Helper | element', function(hooks) {
 
     await settled();
 
-    assert.equal(this.element.innerHTML.trim(), 'Test');
+    assert.strictEqual(this.element.innerText.trim(), 'Test');
 
     this.set('tagName', 'p');
 
@@ -229,7 +239,7 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('p#content').hasText('Test').hasClass('extra');
   });
 
-  test('it can be invoked inline', async function(assert) {
+  test('it can be invoked inline', async function (assert) {
     this.set('tagName', 'p');
 
     await render(hbs`{{element this.tagName}}`);
@@ -244,7 +254,7 @@ module('Integration | Helper | element', function(hooks) {
 
     this.set('tagName', '');
 
-    assert.equal(this.element.innerHTML.trim(), '<!---->');
+    assert.strictEqual(this.element.innerHTML.trim(), '<!---->');
 
     this.set('tagName', 'p');
 
@@ -253,9 +263,13 @@ module('Integration | Helper | element', function(hooks) {
     assert.dom('p').exists();
   });
 
-  module('invalid usages', function() {
-    test('it requires at least one argument', async function() {
-      expectEmberError(new Error('Assertion Failed: The `element` helper takes a single positional argument'));
+  module('invalid usages', function () {
+    test('it requires at least one argument', async function () {
+      expectEmberError(
+        new Error(
+          'Assertion Failed: The `element` helper takes a single positional argument'
+        )
+      );
 
       await render(hbs`
         <div>
@@ -266,8 +280,12 @@ module('Integration | Helper | element', function(hooks) {
       `);
     });
 
-    test('it requires no more than one argument', async function() {
-      expectEmberError(new Error('Assertion Failed: The `element` helper takes a single positional argument'));
+    test('it requires no more than one argument', async function () {
+      expectEmberError(
+        new Error(
+          'Assertion Failed: The `element` helper takes a single positional argument'
+        )
+      );
 
       await render(hbs`
         <div>
@@ -278,8 +296,12 @@ module('Integration | Helper | element', function(hooks) {
       `);
     });
 
-    test('it does not take any named arguments', async function() {
-      expectEmberError(new Error('Assertion Failed: The `element` helper does not take any named arguments'));
+    test('it does not take any named arguments', async function () {
+      expectEmberError(
+        new Error(
+          'Assertion Failed: The `element` helper does not take any named arguments'
+        )
+      );
 
       await render(hbs`
         <div>
@@ -290,14 +312,26 @@ module('Integration | Helper | element', function(hooks) {
       `);
     });
 
-    test('it does not take a block', async function(assert) {
+    test('it does not take a block', async function (assert) {
       // Before the EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS feature was enabled
       // in 3.10, the "dash rule" short-circuited this assertion by accident,
       // so this was just a no-op but no error was thrown.
-      if (macroCondition(dependencySatisfies('ember-source', '>= 3.25.0-beta.0'))) {
-        expectEmberError(new Error('Attempted to resolve `element`, which was expected to be a component, but nothing was found.'));
-      } else if (macroCondition(dependencySatisfies('ember-source', '>= 3.10.0-beta.0'))) {
-        expectEmberError(new Error('Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'));
+      if (
+        macroCondition(dependencySatisfies('ember-source', '>=3.25.0-beta.0'))
+      ) {
+        expectEmberError(
+          new Error(
+            'Attempted to resolve `element`, which was expected to be a component, but nothing was found.'
+          )
+        );
+      } else if (
+        macroCondition(dependencySatisfies('ember-source', '>=3.10.0-beta.0'))
+      ) {
+        expectEmberError(
+          new Error(
+            'Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'
+          )
+        );
       }
 
       // Due to https://github.com/glimmerjs/glimmer-vm/pull/1073, we need to
@@ -322,8 +356,12 @@ module('Integration | Helper | element', function(hooks) {
       assert.dom('h1').doesNotExist();
     });
 
-    test('it throws when pasased a number', async function() {
-      expectEmberError(new Error('Assertion Failed: The argument passed to the `element` helper must be a string (you passed `123`)'));
+    test('it throws when pasased a number', async function () {
+      expectEmberError(
+        new Error(
+          'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `123`)'
+        )
+      );
 
       await render(hbs`
         <div>
@@ -334,8 +372,12 @@ module('Integration | Helper | element', function(hooks) {
       `);
     });
 
-    test('it throws when pasased a boolean', async function() {
-      expectEmberError(new Error('Assertion Failed: The argument passed to the `element` helper must be a string (you passed `false`)'));
+    test('it throws when pasased a boolean', async function () {
+      expectEmberError(
+        new Error(
+          'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `false`)'
+        )
+      );
 
       await render(hbs`
         <div>
@@ -346,8 +388,12 @@ module('Integration | Helper | element', function(hooks) {
       `);
     });
 
-    test('it throws when pasased an object', async function() {
-      expectEmberError(new Error('Assertion Failed: The argument passed to the `element` helper must be a string'));
+    test('it throws when pasased an object', async function () {
+      expectEmberError(
+        new Error(
+          'Assertion Failed: The argument passed to the `element` helper must be a string'
+        )
+      );
 
       await render(hbs`
         <div>

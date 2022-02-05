@@ -2,7 +2,7 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
   });
@@ -15,9 +15,17 @@ module.exports = function(defaults) {
   */
 
   if (app.env === 'test') {
-    app.import('node_modules/ember-source/dist/ember-template-compiler.js', { type: 'test' });
+    app.import('node_modules/ember-source/dist/ember-template-compiler.js', {
+      type: 'test',
+    });
   }
 
   const { maybeEmbroider } = require('@embroider/test-setup');
-  return maybeEmbroider(app);
+  return maybeEmbroider(app, {
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
+  });
 };
