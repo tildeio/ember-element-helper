@@ -1,7 +1,7 @@
 ember-element-helper
 ==============================================================================
 
-[![Build Status](https://github.com/tildeio/ember-element-helper/actions/workflows/build.yml/badge.svg)](https://github.com/tildeio/ember-element-helper/actions/workflows/build.yml)
+[![Build Status](https://github.com/tildeio/ember-element-helper/actions/workflows/ci.yml/badge.svg)](https://github.com/tildeio/ember-element-helper/actions/workflows/ci.yml)
 
 Dynamic element helper for Glimmer templates.
 
