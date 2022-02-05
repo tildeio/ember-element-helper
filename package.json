@@ -1,6 +1,6 @@
 {
   "name": "ember-element-helper",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "Dynamic element helper for Glimmer templates.",
   "keywords": [
     "ember-addon",
