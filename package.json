@@ -73,7 +73,7 @@
     "webpack": "^5.68.0"
   },
   "peerDependencies": {
-    "ember-source": "^3.8 || 4"
+    "ember-source": "*"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
@@ -85,7 +85,10 @@
     "edition": "octane"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "versionCompatibility": {
+      "ember": ">=3.24"
+    }
   },
   "release-it": {
     "plugins": {
