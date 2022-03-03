@@ -239,7 +239,7 @@ module('Integration | Helper | element', function (hooks) {
     assert.dom('p#content').hasText('Test').hasClass('extra');
   });
 
-  test('it can be invoked inline', async function (assert) {
+  test.skip('it can be invoked inline', async function (assert) {
     this.set('tagName', 'p');
 
     await render(hbs`{{element this.tagName}}`);
