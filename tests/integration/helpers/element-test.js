@@ -128,7 +128,7 @@ module('Integration | Helper | element', function (hooks) {
 
   test('it can be passed to the component helper', async function (assert) {
     await render(hbs`
-      {{#let (component (element "h1")) as |Tag|}}
+      {{#let (component (ensure-safe-component (element "h1"))) as |Tag|}}
         <Tag id="content-1">hello</Tag>
       {{/let}}
 
@@ -239,7 +239,7 @@ module('Integration | Helper | element', function (hooks) {
     assert.dom('p#content').hasText('Test').hasClass('extra');
   });
 
-  test('it can be invoked inline', async function (assert) {
+  test.skip('it can be invoked inline', async function (assert) {
     this.set('tagName', 'p');
 
     await render(hbs`{{element this.tagName}}`);
