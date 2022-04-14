@@ -1,4 +1,13 @@
 
+## v0.6.1 (2022-04-14)
+
+#### :rocket: Enhancement
+* [#82](https://github.com/tildeio/ember-element-helper/pull/82) Remove the need for an AST transform ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
+
 ## v0.6.0 (2022-02-05)
 
 #### :boom: Breaking Change
