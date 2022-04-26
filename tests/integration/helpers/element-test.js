@@ -356,7 +356,7 @@ module('Integration | Helper | element', function (hooks) {
       assert.dom('h1').doesNotExist();
     });
 
-    test('it throws when pasased a number', async function () {
+    test('it throws when passed a number', async function () {
       expectEmberError(
         new Error(
           'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `123`)'
@@ -372,7 +372,7 @@ module('Integration | Helper | element', function (hooks) {
       `);
     });
 
-    test('it throws when pasased a boolean', async function () {
+    test('it throws when passed a boolean', async function () {
       expectEmberError(
         new Error(
           'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `false`)'
@@ -388,7 +388,7 @@ module('Integration | Helper | element', function (hooks) {
       `);
     });
 
-    test('it throws when pasased an object', async function () {
+    test('it throws when passed an object', async function () {
       expectEmberError(
         new Error(
           'Assertion Failed: The argument passed to the `element` helper must be a string'
