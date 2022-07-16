@@ -6,7 +6,9 @@
   "license": "MIT",
   "author": "Godfrey Chan <godfrey@tilde.io>",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "element helper",
+    "dynamic element"
   ],
   "exports": {
     ".": "./dist/index.js",
@@ -79,5 +81,23 @@
   },
   "peerDependencies": {
     "ember-source": "^3.8 || 4"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    },
+    "npm": {
+      "publish": false
+    }
   }
 }
