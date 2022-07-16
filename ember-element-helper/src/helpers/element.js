@@ -1,7 +1,8 @@
-import Helper from '@ember/component/helper';
-import { assert, runInDebug } from '@ember/debug';
 // eslint-disable-next-line ember/no-classic-components
 import EmberComponent from '@ember/component';
+import Helper from '@ember/component/helper';
+import { assert, runInDebug } from '@ember/debug';
+
 import { ensureSafeComponent } from '@embroider/util';
 
 function UNINITIALIZED() {}
@@ -14,10 +15,7 @@ export default class ElementHelper extends Helper {
   }
 
   compute(params, hash) {
-    assert(
-      'The `element` helper takes a single positional argument',
-      params.length === 1
-    );
+    assert('The `element` helper takes a single positional argument', params.length === 1);
     assert(
       'The `element` helper does not take any named arguments',
       Object.keys(hash).length === 0
@@ -39,8 +37,7 @@ export default class ElementHelper extends Helper {
         this.componentClass = null;
 
         runInDebug(() => {
-          let message =
-            'The argument passed to the `element` helper must be a string';
+          let message = 'The argument passed to the `element` helper must be a string';
 
           try {
             message += ` (you passed \`${tagName}\`)`;
