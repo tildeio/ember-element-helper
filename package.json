@@ -21,10 +21,10 @@
     "node": "16.16.0",
     "yarn": "1.22.17"
   },
-  "engines": {
-    "node": "12.* || 14.* || >= 16"
-  },
   "devDependencies": {
     "concurrently": "^7.2.2"
+  },
+  "resolutions": {
+    "eslint-plugin-decorator-position": "^4.0.0"
   }
 }

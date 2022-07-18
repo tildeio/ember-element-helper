@@ -49,7 +49,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.18.8.tgz#2483f565faca607b8535590e84e7de323f27764d"
   integrity sha512-HSmX4WZPPK3FUxYp7g2T6EyO8j96HlZJlxmKPSh6KAcqwyDrfx7hKjXpAW/0FhFfTJsR0Yt4lAjLI2coMptIHQ==
 
-"@babel/core@7.18.6", "@babel/core@^7.14.5", "@babel/core@^7.18.6":
+"@babel/core@7.18.6", "@babel/core@^7.14.5":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.18.6.tgz#54a107a3c298aee3fe5e1947a6464b9b6faca03d"
   integrity sha512-cQbWBpxcbbs/IUredIPkHiAGULLV8iwgNRMFzvbhEXISp4f3rUUXE5+TIw6KwUWUR3DwyI6gmBRnmAtYaWehwQ==
@@ -613,7 +613,7 @@
     "@babel/helper-plugin-utils" "^7.18.6"
     "@babel/plugin-syntax-class-static-block" "^7.14.5"
 
-"@babel/plugin-proposal-decorators@7.18.6", "@babel/plugin-proposal-decorators@^7.18.6":
+"@babel/plugin-proposal-decorators@7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.18.6.tgz#68e9fd0f022b944f84a8824bb28bfaee724d2595"
   integrity sha512-gAdhsjaYmiZVxx5vTMiRfj31nB7LhwBJFMSLzeDxc7X4tKLixup0+k9ughn0RcpBrv9E3PBaXJW7jF5TCihAOg==
@@ -7258,7 +7258,7 @@ ember-resolver@^8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-rfc176-data@^0.3.15, ember-rfc176-data@^0.3.17:
+ember-rfc176-data@^0.3.12, ember-rfc176-data@^0.3.15, ember-rfc176-data@^0.3.17:
   version "0.3.17"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.17.tgz#d4fc6c33abd6ef7b3440c107a28e04417b49860a"
   integrity sha512-EVzTTKqxv9FZbEh6Ktw56YyWRAA0MijKvl7H8C06wVF+8f/cRRz3dXxa4nkwjzyVwx4rzKGuIGq77hxJAQhWWw==
@@ -7670,16 +7670,14 @@ eslint-module-utils@^2.7.3:
     debug "^3.2.7"
     find-up "^2.1.0"
 
-eslint-plugin-decorator-position@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-5.0.0.tgz#8f6f37f401f691634aa0ac26bb023e5e5d5aa357"
-  integrity sha512-v9hhZgS34cOm4xPsI+UaDGcKolnsCqQYEBGJmjqhzgTDrOVlPhOZAT2u5GGnKFF7TqniLEQ8hU6F9lh8NGfTfw==
+eslint-plugin-decorator-position@5.0.0, eslint-plugin-decorator-position@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-4.0.1.tgz#836b991dd2a69da2466ef2567b603b1480c9af5d"
+  integrity sha512-GqX0z19RtHYtpyCicERXIRpYELAsGwm3kcySP+eH2F4DpZr91xmKzyOU+D7heKq2xOl29lTKbeeqy9GhY2NFXA==
   dependencies:
-    "@babel/core" "^7.18.6"
-    "@babel/plugin-proposal-decorators" "^7.18.6"
     "@ember-data/rfc395-data" "^0.0.4"
-    ember-rfc176-data "^0.3.17"
-    snake-case "^3.0.4"
+    ember-rfc176-data "^0.3.12"
+    snake-case "^3.0.3"
 
 eslint-plugin-ember@10.6.1, eslint-plugin-ember@^10.5.9:
   version "10.6.1"
@@ -13657,7 +13655,7 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
   integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
 
-snake-case@^3.0.3, snake-case@^3.0.4:
+snake-case@^3.0.3:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/snake-case/-/snake-case-3.0.4.tgz#4f2bbd568e9935abdfd593f34c691dadb49c452c"
   integrity sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==
