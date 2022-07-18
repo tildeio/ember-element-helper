@@ -30,6 +30,7 @@
     "lint:fix": "concurrently 'npm:lint:js:fix'",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
+    "pretest": "yarn run build",
     "test": "echo 'Addon does not have tests, run tests in test-app'",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn run build"
