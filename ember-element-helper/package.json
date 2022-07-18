@@ -74,6 +74,9 @@
       "./helpers/element.js": "./dist/_app_/helpers/element.js"
     }
   },
+  "engines": {
+    "node": "14.* || 16.* || >= 18"
+  },
   "volta": {
     "extends": "../package.json"
   },
