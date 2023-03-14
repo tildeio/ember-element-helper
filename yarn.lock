@@ -2389,6 +2389,11 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
 
+"@glint/template@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@glint/template/-/template-1.0.0-beta.3.tgz#5866c0ffc1d8273f2e9b2fd186b65f5d4e6dbc15"
+  integrity sha512-jxn4yGzNZ1A4NGzvjYht0NlVziHyzjj/rm4rGsP1mVUO2Dd/LHhhxR6NUlSw9MFDZ0fCinULVwQtAKQLEpIpPw==
+
 "@handlebars/parser@~2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@handlebars/parser/-/parser-2.0.0.tgz#5e8b7298f31ff8f7b260e6b7363c7e9ceed7d9c5"
