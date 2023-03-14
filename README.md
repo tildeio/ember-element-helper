@@ -84,6 +84,29 @@ that accepts "contextual components" as arguments:
 {{!-- ...or more directly... --}}
 <@tag class="my-tag">hello world!</@tag>
 ```
+### Glint usage
+
+Helpers `{{element}}` has proper [Glint](https://github.com/typed-ember/glint) types,
+which allow you when using TypeScript to get strict type checking in your templates.
+
+Unless you are using [strict mode](http://emberjs.github.io/rfcs/0496-handlebars-strict-mode.html) templates
+(via [first class component templates](http://emberjs.github.io/rfcs/0779-first-class-component-templates.html)),
+you need to import the addon's Glint template registry and extend your app's registry declaration
+as described in the [Using Addons](https://typed-ember.gitbook.io/glint/using-glint/ember/using-addons#using-glint-enabled-addons) documentation:
+
+```ts
+import '@glint/environment-ember-loose';
+import type EmberElementHelperRegistry from 'ember-css-modules/template-registry';
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry extends EmberElementHelperRegistry, /* other addon registries */ {
+    // local entries
+  }
+}
+```
+
+> **Note:** Glint itself is still under active development, and as such breaking changes might occur.
+> Therefore, Glint support by this addon is also considered experimental, and not covered by our SemVer contract!
+
 
 Contributing
 ------------------------------------------------------------------------------
