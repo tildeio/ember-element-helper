@@ -22,11 +22,11 @@
     "yarn": "1.22.17"
   },
   "devDependencies": {
-    "@glint/template": "1.0.0-beta.3",
+    "@glint/template": "^1.0.0-beta.3",
     "concurrently": "^7.2.2"
   },
   "peerDependencies": {
-    "@glint/template": "1.0.0-beta.3"
+    "@glint/template": "^1.0.0-beta.3"
   },
   "resolutions": {
     "eslint-plugin-decorator-position": "^4.0.0"

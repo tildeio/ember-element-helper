@@ -96,7 +96,7 @@ as described in the [Using Addons](https://typed-ember.gitbook.io/glint/using-gl
 
 ```ts
 import '@glint/environment-ember-loose';
-import type EmberElementHelperRegistry from 'ember-css-modules/template-registry';
+import type EmberElementHelperRegistry from 'ember-element-helper/template-registry';
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry extends EmberElementHelperRegistry, /* other addon registries */ {
     // local entries
