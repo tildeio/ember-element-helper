@@ -81,7 +81,7 @@
     "extends": "../package.json"
   },
   "peerDependencies": {
-    "ember-source": "^3.8 || >= 4.0.0"
+    "ember-source": "^3.8 || ^4.0.0 || >= 5.0.0"
   },
   "release-it": {
     "plugins": {
