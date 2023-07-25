@@ -13,6 +13,7 @@ module.exports = async function () {
           devDependencies: {
             'ember-resolver': '^8.0.0',
             'ember-source': '~3.24.3',
+            'ember-qunit': '^5.1.5',
           },
         },
       },
