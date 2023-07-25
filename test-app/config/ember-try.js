@@ -15,6 +15,8 @@ module.exports = async function () {
             'ember-source': '~3.24.3',
             'ember-qunit': '^5.1.5',
             'ember-cli-htmlbars': '^5.3.1',
+            'babel-plugin-htmlbars-inline-precompile': '^5.3.1',
+            'babel-plugin-ember-template-compilation': '^1.0.2',
           },
         },
       },
