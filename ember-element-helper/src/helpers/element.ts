@@ -7,14 +7,24 @@ import { ensureSafeComponent } from '@embroider/util';
 
 function UNINITIALIZED() {}
 
-export default class ElementHelper extends Helper {
-  constructor() {
-    super(...arguments);
-    this.tagName = UNINITIALIZED;
-    this.componentClass = null;
-  }
+type Positional<T> = [name: T];
+type Return<T> = EmberComponent<{
+  Element: T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : Element;
+  Blocks: { default: [] };
+}>;
 
-  compute(params, hash) {
+export interface ElementSignature<T extends string> {
+  Args: {
+    Positional: Positional<T>;
+  };
+  Return: Return<T> | undefined;
+}
+
+export default class ElementHelper<T extends string> extends Helper<ElementSignature<T>> {
+  tagName: string | (() => void) = UNINITIALIZED;
+  componentClass?: Return<T>;
+
+  compute(params: Positional<T>, hash: object) {
     assert('The `element` helper takes a single positional argument', params.length === 1);
     assert(
       'The `element` helper does not take any named arguments',
@@ -32,9 +42,9 @@ export default class ElementHelper extends Helper {
             tagName = tagName; // eslint-disable-line ember/require-tagless-components
           },
           this
-        );
+        ) as Return<T>;
       } else {
-        this.componentClass = null;
+        this.componentClass = undefined;
 
         runInDebug(() => {
           let message = 'The argument passed to the `element` helper must be a string';
