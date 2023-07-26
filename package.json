@@ -8,14 +8,13 @@
   "license": "MIT",
   "author": "Godfrey Chan <godfrey@tilde.io>",
   "scripts": {
-    "prepare": "yarn build",
-    "build": "yarn workspace ember-element-helper run build",
+    "build": "pnpm --filter ember-element-helper build",
     "start": "concurrently 'npm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
-    "start:addon": "yarn workspace ember-element-helper run start",
-    "start:test": "yarn workspace test-app run start",
-    "lint": "yarn workspaces run lint",
-    "lint:fix": "yarn workspaces run lint:fix",
-    "test": "yarn workspaces run test"
+    "start:addon": "pnpm --filter ember-element-helper start",
+    "start:test": "pnpm --filter test-app start",
+    "lint": "pnpm --filter '*' lint",
+    "lint:fix": "pnpm --filter '*' lint:fix",
+    "test": "pnpm --filter '*' test"
   },
   "volta": {
     "node": "14.21.3",
