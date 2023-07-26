@@ -1,5 +1,4 @@
-ember-element-helper
-==============================================================================
+# ember-element-helper
 
 [![Build Status](https://github.com/tildeio/ember-element-helper/actions/workflows/ci.yml/badge.svg)](https://github.com/tildeio/ember-element-helper/actions/workflows/ci.yml)
 
@@ -18,15 +17,13 @@ this addon as a true polyfill for the feature, allowing the feature to be used
 on older Ember.js versions and be completely inert on newer versions where the
 official implementation is available.
 
-Compatibility
-------------------------------------------------------------------------------
+## Compatibility
 
 * Ember.js v3.24 or above
 * Ember CLI v3.24 or above
 * Node.js v12 or above
 
-Limitations
-------------------------------------------------------------------------------
+## Limitations
 
 This implementation has the following known limitations:
 
@@ -52,15 +49,13 @@ This implementation has the following known limitations:
   which is first available on Ember 3.11. This is an Ember.js limitation,
   unrelated to this addon.
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-element-helper
 ```
 
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 ```hbs
 {{#let (element this.tagName) as |Tag|}}
@@ -85,12 +80,47 @@ that accepts "contextual components" as arguments:
 <@tag class="my-tag">hello world!</@tag>
 ```
 
-Contributing
-------------------------------------------------------------------------------
+### Single File Components
+
+Using the `(element)` helper with [first class component
+templates](http://emberjs.github.io/rfcs/0779-first-class-component-templates.html):
+
+```gjs
+import { element } from 'ember-element-helper';
+
+<template>
+  {{#let (element @tagName) as |Tag|}}
+    <Tag class="my-tag">hello world!</Tag>
+  {{/let}}
+</template>
+```
+
+### Glint Usage in Classic Mode
+
+In order to use a typed `(element)` helper in classic mode, you need to import
+the addon's glint template registry and extend your app's registry declaration
+as described in the [Using
+Addons](https://typed-ember.gitbook.io/glint/using-glint/ember/using-addons#using-glint-enabled-addons)
+documentation:
+
+```ts
+import '@glint/environment-ember-loose';
+import type EmberElementHelperRegistry from 'ember-element-helper/template-registry';
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry extends EmberElementHelperRegistry, /* other addon registries */ {
+    // local entries
+  }
+}
+```
+
+> **Note:** Glint itself is still under active development, and as such breaking changes might occur.
+> Therefore, Glint support by this addon is also considered experimental, and not covered by our SemVer contract!
+
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
