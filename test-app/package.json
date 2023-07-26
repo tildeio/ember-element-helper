@@ -13,8 +13,8 @@
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
-    "lint:css": "stylelint '**/*.css'",
-    "lint:css:fix": "concurrently 'npm:lint:css -- --fix'",
+    "_lint:css": "stylelint '**/*.css'",
+    "_lint:css:fix": "concurrently 'npm:lint:css -- --fix'",
     "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
