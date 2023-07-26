@@ -42,7 +42,7 @@ export default class ElementHelper<T extends string> extends Helper<ElementSigna
             tagName = tagName; // eslint-disable-line ember/require-tagless-components
           },
           this
-        ) as Return<T>;
+        ) as unknown as Return<T>;
       } else {
         this.componentClass = undefined;
 
