@@ -5,6 +5,7 @@ import { assert, runInDebug } from '@ember/debug';
 
 import { ensureSafeComponent } from '@embroider/util';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 function UNINITIALIZED() {}
 
 type Positional<T> = [name: T];
