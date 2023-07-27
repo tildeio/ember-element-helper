@@ -1,4 +1,9 @@
 
+## v0.7.1 (2023-07-27)
+
+Re-trigger automated release
+
+
 ## v0.7.0 (2023-07-26)
 
 #### :rocket: Enhancement
