@@ -68,6 +68,7 @@ jobs:
     steps:
       - name: Setup
         uses: wyvox/action@v1
+      - run: ls -la .
       - name: Try Scenario
         run: pnpm exec ember try:one ${{ matrix.try-scenario }} --skip-cleanup
         working-directory: test-app
