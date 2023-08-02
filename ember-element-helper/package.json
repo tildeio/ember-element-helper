@@ -30,10 +30,10 @@
     "lint:fix": "concurrently 'npm:lint:js:fix'",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "pretest": "yarn run build",
+    "pretest": "pnpm build",
     "test": "echo 'Addon does not have tests, run tests in test-app'",
-    "prepare": "yarn run build",
-    "prepublishOnly": "yarn run build"
+    "prepare": "pnpm build",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@embroider/addon-shim": "1.8.3",
@@ -57,7 +57,7 @@
     "eslint-plugin-simple-import-sort": "7.0.0",
     "rollup": "2.77.0",
     "babel-eslint": "10.1.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.31.0",
     "@rollup/plugin-babel": "5.3.1"
   },
   "publishConfig": {
