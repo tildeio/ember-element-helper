@@ -54,7 +54,7 @@
     "@babel/plugin-proposal-decorators": "7.18.6",
     "@babel/preset-typescript": "7.22.5",
     "@babel/runtime": "^7.22.6",
-    "@embroider/addon-dev": "3.2.0",
+    "@embroider/addon-dev": "4.1.0",
     "@nullvoxpopuli/eslint-configs": "2.2.36",
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-node-resolve": "15.1.0",
