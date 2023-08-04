@@ -1,1 +1,3 @@
-<@tag id='content' ...attributes>{{yield}}</@tag>
+{{#let @tag as |Tag|}}
+  <Tag id="content" ...attributes>{{yield}}</Tag>
+{{/let}}

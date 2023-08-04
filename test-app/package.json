@@ -42,6 +42,11 @@
     "@embroider/webpack": "^2.1.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
+    "@glint/core": "^1.0.2",
+    "@glint/environment-ember-loose": "^1.0.2",
+    "@glint/environment-ember-template-imports": "^1.0.2",
+    "@glint/template": "^1.0.2",
+    "@tsconfig/ember": "^3.0.0",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^8.0.1",
     "ember-auto-import": "^2.6.3",
@@ -79,6 +84,7 @@
     "stylelint-config-standard": "^32.0.0",
     "stylelint-prettier": "^3.0.0",
     "tracked-built-ins": "^3.1.1",
+    "typescript": "5.1.6",
     "webpack": "^5.78.0"
   },
   "engines": {

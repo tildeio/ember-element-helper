@@ -9,13 +9,10 @@ module.exports = function (defaults) {
     autoImport: {
       watchDependencies: Object.keys(packageJson.dependencies),
     },
+    'ember-cli-babel': {
+      enableTypeScriptTransform: true,
+    },
   });
-
-  if (app.env === 'test') {
-    app.import('node_modules/ember-source/dist/ember-template-compiler.js', {
-      type: 'test',
-    });
-  }
 
   const { maybeEmbroider } = require('@embroider/test-setup');
   return maybeEmbroider(app, {

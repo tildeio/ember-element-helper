@@ -8,12 +8,12 @@ import { ensureSafeComponent } from '@embroider/util';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 function UNINITIALIZED() {}
 
-export type ElementFromTagName<T> = T extends keyof HTMLElementTagNameMap
+export type ElementFromTagName<T extends string> = T extends keyof HTMLElementTagNameMap
   ? HTMLElementTagNameMap[T]
   : Element;
 
-type Positional<T> = [name: T];
-type Return<T> = EmberComponent<{
+type Positional<T extends string> = [name: T];
+type Return<T extends string> = typeof EmberComponent<{
   Element: ElementFromTagName<T>;
   Blocks: { default: [] };
 }>;
@@ -43,6 +43,7 @@ export default class ElementHelper<T extends string> extends Helper<ElementSigna
 
       if (typeof tagName === 'string') {
         this.componentClass = ensureSafeComponent(
+          // @ts-ignore
           class DynamicElement extends EmberComponent {
             tagName = tagName; // eslint-disable-line ember/require-tagless-components
           },
