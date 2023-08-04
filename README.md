@@ -117,6 +117,52 @@ declare module '@glint/environment-ember-loose/registry' {
 > **Note:** Glint itself is still under active development, and as such breaking changes might occur.
 > Therefore, Glint support by this addon is also considered experimental, and not covered by our SemVer contract!
 
+### Typing your Components
+
+When your component accepts an element with the `(element)` helper, you want to
+give this argument a proper type. Here is how:
+
+```ts
+import type { ElementSignature } from 'ember-element-helper';
+
+interface YourComponentSignature<T extends string> {
+  Element: HTMLSectionElement;
+  Args: {
+    element?: ElementSignature['Return'];
+  };
+}
+```
+
+When the `@element` argument influences the `Element` of your component:
+
+```ts
+import type { ElementSignature, ElementFromTagName } from 'ember-element-helper';
+
+interface YourComponentSignature<T extends string> {
+  Element: ElementFromTagName<T>;
+  Args: {
+    element?: ElementSignature<T>['Return'];
+  };
+}
+```
+
+When your component already uses an element for a given condition. When
+the condition isn't met, a fallback element is used. The fallback can even be
+provided from the outside. Here is the type:
+
+```ts
+import type { ElementSignature, ElementFromTagName } from 'ember-element-helper';
+
+interface YourComponentSignature<
+  T extends string = 'section'
+> {
+  Element: HTMLButtonElement | HTMLAnchorElement | ElementFromTagName<T>;
+  Args: {
+    element?: ElementSignature<T>['Return'];
+  };
+}
+```
+
 ## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
