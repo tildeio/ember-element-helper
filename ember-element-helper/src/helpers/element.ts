@@ -43,6 +43,7 @@ export default class ElementHelper<T extends string> extends Helper<ElementSigna
 
       if (typeof tagName === 'string') {
         this.componentClass = ensureSafeComponent(
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           class DynamicElement extends EmberComponent {
             tagName = tagName; // eslint-disable-line ember/require-tagless-components
