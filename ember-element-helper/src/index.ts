@@ -1,4 +1,4 @@
-import ElementHelper, { type ElementSignature, type ElementFromTagName } from './helpers/element';
+import ElementHelper, { type ElementFromTagName, type ElementSignature } from './helpers/element';
 
 export { ElementHelper as element };
-export type { ElementSignature, ElementFromTagName };
+export type { ElementFromTagName, ElementSignature };

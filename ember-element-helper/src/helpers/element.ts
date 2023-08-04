@@ -8,7 +8,9 @@ import { ensureSafeComponent } from '@embroider/util';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 function UNINITIALIZED() {}
 
-export type ElementFromTagName<T> = T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : Element;
+export type ElementFromTagName<T> = T extends keyof HTMLElementTagNameMap
+  ? HTMLElementTagNameMap[T]
+  : Element;
 
 type Positional<T> = [name: T];
 type Return<T> = EmberComponent<{
