@@ -8,22 +8,6 @@ module.exports = async function () {
     usePnpm: true,
     scenarios: [
       {
-        name: 'ember-lts-3.24',
-        npm: {
-          devDependencies: {
-            'ember-resolver': '^8.0.0',
-            'ember-source': '~3.24.3',
-            'ember-cli': '^4.0.0',
-            'ember-qunit': '^5.0.0',
-            '@ember/test-helpers': '^2.1.0',
-            'ember-cli-htmlbars': '^5.0.0',
-            '@embroider/core': null,
-            '@embroider/compat': null,
-            '@embroider/webpack': null,
-          },
-        },
-      },
-      {
         name: 'ember-lts-3.28',
         npm: {
           devDependencies: {
