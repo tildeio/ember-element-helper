@@ -1,5 +1,11 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
+  "glint": {
+    "environment": [
+      "ember-loose",
+      "ember-template-imports"
+    ]
+  },
   "compilerOptions": {
     "noEmit": false,
     "declarationDir": "./declarations",
@@ -7,7 +13,9 @@
       "*": [
         "./types/*"
       ]
-    }
+    },
+    // for typescript < 5
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "src/**/*",

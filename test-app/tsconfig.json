@@ -21,7 +21,9 @@
       "*": [
         "types/*"
       ]
-    }
+    },
+    // for typescript < 5
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "app/**/*",

@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import type { ElementSignature, ElementFromTagName } from 'ember-element-helper';
 
-interface ElementReceiverSignature<T extends string> {
+interface ElementReceiverSignature<T extends string = 'article'> {
   Element: ElementFromTagName<T>;
   Args: {
     tag: ElementSignature<T>['Return'];
@@ -11,4 +11,4 @@ interface ElementReceiverSignature<T extends string> {
   }
 }
 
-export default class ElementReceiver<T extends string = 'article'> extends Component<ElementReceiverSignature<T>> {}
+export default class ElementReceiver<T extends string> extends Component<ElementReceiverSignature<T>> {}
