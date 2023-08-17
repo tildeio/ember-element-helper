@@ -4,18 +4,18 @@
 
 * `git clone <repository-url>`
 * `cd ember-element-helper`
-* `yarn install`
+* `pnpm install`
 
 ## Linting
 
-* `yarn lint`
-* `yarn lint:fix`
+* `pnpm lint`
+* `pnpm lint:fix`
 
 ## Running tests
 
-* `yarn test` – Runs the test suite on the current Ember version
-* `yarn test --server` – Runs the test suite in "watch mode"
-* `yarn test:all` – Runs the test suite against multiple Ember versions
+* `pnpm test` – Runs the test suite on the current Ember version
+* `pnpm test --server` – Runs the test suite in "watch mode"
+* `pnpm test:all` – Runs the test suite against multiple Ember versions
 
 ## Running the dummy application
 
