@@ -17,7 +17,7 @@
     "test": "pnpm --filter '*' test"
   },
   "volta": {
-    "node": "14.21.3",
+    "node": "16.20.2",
     "npm": "9.8.1"
   },
   "devDependencies": {
