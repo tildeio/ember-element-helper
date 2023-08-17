@@ -1,4 +1,24 @@
 
+
+## v0.8.0 (2023-08-17)
+
+#### :boom: Breaking Change
+* [#107](https://github.com/tildeio/ember-element-helper/pull/107) Add glint support ([@gossi](https://github.com/gossi))
+
+#### :rocket: Enhancement
+* [#107](https://github.com/tildeio/ember-element-helper/pull/107) Add glint support ([@gossi](https://github.com/gossi))
+
+#### :memo: Documentation
+* [#109](https://github.com/tildeio/ember-element-helper/pull/109) Update RELEASE and CONTRIBUTING md files ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#110](https://github.com/tildeio/ember-element-helper/pull/110) Tell volta to use node@16 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#108](https://github.com/tildeio/ember-element-helper/pull/108) Switch to `pnpm` ([@gossi](https://github.com/gossi))
+
+#### Committers: 2
+- Thomas Gossmann ([@gossi](https://github.com/gossi))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## v0.7.1 (2023-07-27)
 
 Re-trigger automated release
