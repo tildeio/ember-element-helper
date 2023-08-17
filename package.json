@@ -1,9 +1,5 @@
 {
   "private": true,
-  "workspaces": [
-    "ember-element-helper",
-    "test-app"
-  ],
   "repository": "https://github.com/tildeio/ember-element-helper",
   "license": "MIT",
   "author": "Godfrey Chan <godfrey@tilde.io>",
