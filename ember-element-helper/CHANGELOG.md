@@ -1,5 +1,10 @@
 
 
+## v0.8.2 (2023-08-18)
+
+re-trigger release
+
+
 ## v0.8.1 (2023-08-18)
 #
 re-trigger publish due to issue with ci
