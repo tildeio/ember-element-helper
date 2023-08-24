@@ -27,9 +27,9 @@ export interface ElementSignature<T extends string> {
 
 export default class ElementHelper<T extends string> extends Helper<ElementSignature<T>> {
   tagName: string | (() => void) = UNINITIALIZED;
-  componentClass?: Return<T>;
+  componentClass: Return<T> | undefined;
 
-  compute(params: Positional<T>, hash: object) {
+  override compute(params: Positional<T>, hash: object) {
     assert('The `element` helper takes a single positional argument', params.length === 1);
     assert(
       'The `element` helper does not take any named arguments',
@@ -46,7 +46,7 @@ export default class ElementHelper<T extends string> extends Helper<ElementSigna
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           class DynamicElement extends EmberComponent {
-            tagName = tagName; // eslint-disable-line ember/require-tagless-components
+            override tagName = tagName; // eslint-disable-line ember/require-tagless-components
           },
           this
         ) as unknown as Return<T>;

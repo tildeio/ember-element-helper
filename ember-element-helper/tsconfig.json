@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/ember/tsconfig.json",
+  "extends": ["@tsconfig/esm", "@tsconfig/strictest"],
   "glint": {
     "environment": [
       "ember-loose",
@@ -8,6 +8,8 @@
   },
   "compilerOptions": {
     "noEmit": false,
+    "verbatimModuleSyntax": false,
+    "declaration": true,
     "declarationDir": "./declarations",
     "paths": {
       "*": [
