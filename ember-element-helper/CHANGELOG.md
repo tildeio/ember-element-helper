@@ -1,5 +1,10 @@
 
 
+## v0.8.4 (2023-08-29)
+
+re-trigger release. (release-it needs to run from individual package directory)
+
+
 ## v0.8.2 (2023-08-18)
 
 re-trigger release
