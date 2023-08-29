@@ -5,6 +5,8 @@ import { assert, runInDebug } from '@ember/debug';
 
 import { ensureSafeComponent } from '@embroider/util';
 
+import type { ComponentLike } from '@glint/template';
+
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 function UNINITIALIZED() {}
 
@@ -13,7 +15,7 @@ export type ElementFromTagName<T extends string> = T extends keyof HTMLElementTa
   : Element;
 
 type Positional<T extends string> = [name: T];
-type Return<T extends string> = typeof EmberComponent<{
+type Return<T extends string> = ComponentLike<{
   Element: ElementFromTagName<T>;
   Blocks: { default: [] };
 }>;
