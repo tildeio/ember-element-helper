@@ -28,6 +28,8 @@ When reviewing merged PR's the labels to be used are:
 
 Once the prep work is completed, the actual release is straight forward:
 
+* Initially, `cd ember-element-helper`, as the release process must occur within the package directory.
+
 * First, ensure that you have installed your projects dependencies:
 
 ```sh

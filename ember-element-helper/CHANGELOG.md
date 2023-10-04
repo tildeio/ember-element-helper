@@ -2,23 +2,25 @@
 
 ## v0.8.4 (2023-08-29)
 
-re-trigger release. (release-it needs to run from individual package directory)
+re-release of v0.8.3
 
+## v0.8.3 (2023-08-29)
+
+* [#113](https://github.com/tildeio/ember-element-helper/pull/113) Remove reference to EmberComponent to remove the triple-slash directive in the generated declarations ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
 
 ## v0.8.2 (2023-08-18)
 
-re-trigger release
-
+re-release of v0.8.0
 
 ## v0.8.1 (2023-08-18)
-#
-re-trigger publish due to issue with ci
 
+re-release of v0.8.0
 
 ## v0.8.0 (2023-08-17)
 
 #### :boom: Breaking Change
 * [#107](https://github.com/tildeio/ember-element-helper/pull/107) Add glint support ([@gossi](https://github.com/gossi))
+  drops support for ember 3.24
 
 #### :rocket: Enhancement
 * [#107](https://github.com/tildeio/ember-element-helper/pull/107) Add glint support ([@gossi](https://github.com/gossi))
