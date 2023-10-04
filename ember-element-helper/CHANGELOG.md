@@ -20,6 +20,7 @@ re-release of v0.8.0
 
 #### :boom: Breaking Change
 * [#107](https://github.com/tildeio/ember-element-helper/pull/107) Add glint support ([@gossi](https://github.com/gossi))
+  drops support for ember 3.24
 
 #### :rocket: Enhancement
 * [#107](https://github.com/tildeio/ember-element-helper/pull/107) Add glint support ([@gossi](https://github.com/gossi))
