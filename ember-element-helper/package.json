@@ -21,6 +21,13 @@
     },
     "./addon-main.js": "./addon-main.cjs"
   },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "declarations/*"
+      ]
+    }
+  },
   "files": [
     "dist",
     "declarations",
