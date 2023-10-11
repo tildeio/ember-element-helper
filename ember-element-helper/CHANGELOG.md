@@ -1,5 +1,14 @@
 
 
+## v0.8.5 (2023-10-11)
+
+#### :bug: Bug Fix
+* [#115](https://github.com/tildeio/ember-element-helper/pull/115) Add typesVersions to package.json to make TS imports work ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 2
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## v0.8.4 (2023-08-29)
 
 re-release of v0.8.3
