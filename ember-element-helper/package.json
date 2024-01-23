@@ -54,7 +54,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "@embroider/addon-shim": "1.8.3",
+    "@embroider/addon-shim": "^1.8.3",
     "@embroider/util": "^1.0.0"
   },
   "devDependencies": {
