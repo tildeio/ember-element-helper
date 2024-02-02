@@ -2,7 +2,6 @@
 import EmberComponent from '@ember/component';
 import Helper from '@ember/component/helper';
 import { assert, runInDebug } from '@ember/debug';
-
 import { ensureSafeComponent } from '@embroider/util';
 
 import type { ComponentLike } from '@glint/template';
