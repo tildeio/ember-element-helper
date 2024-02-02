@@ -93,8 +93,8 @@ module('Integration | Helper | element', function (hooks) {
           <Tag type="button" id="action" {{on "click" this.didClick}}>hello world!</Tag>\
         {{/let}}\
       ',
-        { insertRuntimeErrors: true }
-      )
+        { insertRuntimeErrors: true },
+      ),
     );
 
     assert
@@ -153,7 +153,7 @@ module('Integration | Helper | element', function (hooks) {
 
     this.owner.register(
       'helper:counter',
-      helper(() => ++count)
+      helper(() => ++count),
     );
 
     this.set('tagName', 'h1');
@@ -267,8 +267,8 @@ module('Integration | Helper | element', function (hooks) {
     test('it requires at least one argument', async function () {
       expectEmberError(
         new Error(
-          'Assertion Failed: The `element` helper takes a single positional argument'
-        )
+          'Assertion Failed: The `element` helper takes a single positional argument',
+        ),
       );
 
       await render(hbs`
@@ -283,8 +283,8 @@ module('Integration | Helper | element', function (hooks) {
     test('it requires no more than one argument', async function () {
       expectEmberError(
         new Error(
-          'Assertion Failed: The `element` helper takes a single positional argument'
-        )
+          'Assertion Failed: The `element` helper takes a single positional argument',
+        ),
       );
 
       await render(hbs`
@@ -299,8 +299,8 @@ module('Integration | Helper | element', function (hooks) {
     test('it does not take any named arguments', async function () {
       expectEmberError(
         new Error(
-          'Assertion Failed: The `element` helper does not take any named arguments'
-        )
+          'Assertion Failed: The `element` helper does not take any named arguments',
+        ),
       );
 
       await render(hbs`
@@ -321,16 +321,16 @@ module('Integration | Helper | element', function (hooks) {
       ) {
         expectEmberError(
           new Error(
-            'Attempted to resolve `element`, which was expected to be a component, but nothing was found.'
-          )
+            'Attempted to resolve `element`, which was expected to be a component, but nothing was found.',
+          ),
         );
       } else if (
         macroCondition(dependencySatisfies('ember-source', '>=3.10.0-beta.0'))
       ) {
         expectEmberError(
           new Error(
-            'Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.'
-          )
+            'Assertion Failed: Helpers may not be used in the block form, for example {{#element}}{{/element}}. Please use a component, or alternatively use the helper in combination with a built-in Ember helper, for example {{#if (element)}}{{/if}}.',
+          ),
         );
       }
 
@@ -359,8 +359,8 @@ module('Integration | Helper | element', function (hooks) {
     test('it throws when passed a number', async function () {
       expectEmberError(
         new Error(
-          'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `123`)'
-        )
+          'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `123`)',
+        ),
       );
 
       await render(hbs`
@@ -375,8 +375,8 @@ module('Integration | Helper | element', function (hooks) {
     test('it throws when passed a boolean', async function () {
       expectEmberError(
         new Error(
-          'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `false`)'
-        )
+          'Assertion Failed: The argument passed to the `element` helper must be a string (you passed `false`)',
+        ),
       );
 
       await render(hbs`
@@ -391,8 +391,8 @@ module('Integration | Helper | element', function (hooks) {
     test('it throws when passed an object', async function () {
       expectEmberError(
         new Error(
-          'Assertion Failed: The argument passed to the `element` helper must be a string'
-        )
+          'Assertion Failed: The argument passed to the `element` helper must be a string',
+        ),
       );
 
       await render(hbs`
