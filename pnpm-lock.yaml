@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  eslint-plugin-decorator-position: ^4.0.0
-
 importers:
 
   .:
@@ -94,8 +91,8 @@ importers:
         specifier: 9.1.0
         version: 9.1.0(eslint@8.56.0)
       eslint-plugin-decorator-position:
-        specifier: ^4.0.0
-        version: 4.0.1(eslint@8.56.0)
+        specifier: ^5.0.2
+        version: 5.0.2(eslint@8.56.0)
       eslint-plugin-ember:
         specifier: 12.0.0
         version: 12.0.0(@babel/core@7.18.6)(@typescript-eslint/parser@5.62.0)(eslint@8.56.0)(typescript@5.1.6)
@@ -2889,7 +2886,7 @@ packages:
       cosmiconfig: 8.3.6(typescript@5.1.6)
       eslint: 8.56.0
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
-      eslint-plugin-decorator-position: 4.0.1(eslint@8.56.0)
+      eslint-plugin-decorator-position: 5.0.2(eslint@8.56.0)
       eslint-plugin-ember: 12.0.0(@babel/core@7.18.6)(@typescript-eslint/parser@5.62.0)(eslint@8.56.0)(typescript@5.1.6)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.56.0)
       eslint-plugin-json: 3.1.0
@@ -8236,16 +8233,24 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-decorator-position@4.0.1(eslint@8.56.0):
-    resolution: {integrity: sha512-GqX0z19RtHYtpyCicERXIRpYELAsGwm3kcySP+eH2F4DpZr91xmKzyOU+D7heKq2xOl29lTKbeeqy9GhY2NFXA==}
-    engines: {node: '>=8.3'}
+  /eslint-plugin-decorator-position@5.0.2(eslint@8.56.0):
+    resolution: {integrity: sha512-wFcRfrB9zljOP1n5udg16h6ITX1jG8cnUvuFVtIqVxw5O9BTOXFHB9hvsTaqpb8JFX2dq19fH3i/ipUeFSF87w==}
+    engines: {node: '>=14'}
     peerDependencies:
-      eslint: ^7.31.0
+      '@babel/eslint-parser': ^7.18.2
+      eslint: ^6.0.0 || ^7.31.0 || ^8.0.0
+    peerDependenciesMeta:
+      '@babel/eslint-parser':
+        optional: true
     dependencies:
+      '@babel/core': 7.18.6(supports-color@8.1.1)
+      '@babel/plugin-proposal-decorators': 7.22.7(@babel/core@7.18.6)
       '@ember-data/rfc395-data': 0.0.4
       ember-rfc176-data: 0.3.18
       eslint: 8.56.0
       snake-case: 3.0.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /eslint-plugin-ember@12.0.0(@babel/core@7.18.6)(@typescript-eslint/parser@5.62.0)(eslint@8.56.0)(typescript@5.1.6):
