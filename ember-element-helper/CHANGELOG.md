@@ -1,5 +1,17 @@
 
 
+## v0.8.6 (2024-03-14)
+
+#### :rocket: Enhancement
+* [#118](https://github.com/tildeio/ember-element-helper/pull/118) use caret for @embroider/addon-shim dependency ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### :house: Internal
+* [#120](https://github.com/tildeio/ember-element-helper/pull/120) Get linting passing ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## v0.8.5 (2023-10-11)
 
 #### :bug: Bug Fix

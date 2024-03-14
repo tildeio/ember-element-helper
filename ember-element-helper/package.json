@@ -1,6 +1,6 @@
 {
   "name": "ember-element-helper",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Dynamic element helper for Glimmer templates.",
   "repository": "https://github.com/tildeio/ember-element-helper",
   "license": "MIT",
