@@ -13,6 +13,9 @@
     "test": "pnpm --filter '*' test"
   },
   "packageManager": "pnpm@10.7.1",
+  "engines": {
+    "node": ">= 20.0.0"
+  },
   "volta": {
     "node": "20.19.0",
     "pnpm": "10.7.1"
