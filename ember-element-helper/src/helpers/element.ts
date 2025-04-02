@@ -45,7 +45,7 @@ export default class ElementHelper<T extends string> extends Helper<ElementSigna
         this.componentClass =
           class DynamicElement extends EmberComponent {
             tagName = tagName;
-          } as Return<T>;
+          } as unknown as Return<T>;
       } else {
         this.componentClass = undefined;
 
