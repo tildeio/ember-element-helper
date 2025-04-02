@@ -22,5 +22,10 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "@glimmer/validator": ">= 0.84.0"
+    }
   }
 }
