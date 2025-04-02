@@ -1,5 +1,14 @@
 
 
+
+## v0.8.7 (2025-04-02)
+
+#### :bug: Bug Fix
+* [#123](https://github.com/tildeio/ember-element-helper/pull/123) Remove @embroider/util ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## v0.8.6 (2024-03-14)
 
 #### :rocket: Enhancement
