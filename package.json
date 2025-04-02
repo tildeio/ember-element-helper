@@ -12,6 +12,7 @@
     "lint:fix": "pnpm --filter '*' lint:fix",
     "test": "pnpm --filter '*' test"
   },
+  "packageManager": "pnpm@8",
   "volta": {
     "node": "16.20.2",
     "npm": "9.8.1"

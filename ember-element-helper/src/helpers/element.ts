@@ -2,12 +2,11 @@
 import EmberComponent from '@ember/component';
 import Helper from '@ember/component/helper';
 import { assert, runInDebug } from '@ember/debug';
-import { ensureSafeComponent } from '@embroider/util';
 
 import type { ComponentLike } from '@glint/template';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-function UNINITIALIZED() {}
+function UNINITIALIZED() { }
 
 export type ElementFromTagName<T extends string> = T extends keyof HTMLElementTagNameMap
   ? HTMLElementTagNameMap[T]
@@ -43,14 +42,10 @@ export default class ElementHelper<T extends string> extends Helper<ElementSigna
       this.tagName = tagName;
 
       if (typeof tagName === 'string') {
-        this.componentClass = ensureSafeComponent(
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
+        this.componentClass =
           class DynamicElement extends EmberComponent {
-            tagName = tagName; // eslint-disable-line ember/require-tagless-components
-          },
-          this
-        ) as unknown as Return<T>;
+            tagName = tagName;
+          } as unknown as Return<T>;
       } else {
         this.componentClass = undefined;
 
