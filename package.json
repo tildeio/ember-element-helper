@@ -12,10 +12,10 @@
     "lint:fix": "pnpm --filter '*' lint:fix",
     "test": "pnpm --filter '*' test"
   },
-  "packageManager": "pnpm@8",
+  "packageManager": "pnpm@10.7.1",
   "volta": {
-    "node": "16.20.2",
-    "npm": "9.8.1"
+    "node": "20.19.0",
+    "pnpm": "10.7.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
