@@ -14,8 +14,7 @@
         "./types/*"
       ]
     },
-    // for typescript < 5
-    "moduleResolution": "NodeNext"
+    "types": ["ember-source/types"]
   },
   "include": [
     "src/**/*",
