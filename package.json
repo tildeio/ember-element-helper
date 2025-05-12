@@ -19,5 +19,6 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
-  }
+  },
+  "version": "0.8.8"
 }
