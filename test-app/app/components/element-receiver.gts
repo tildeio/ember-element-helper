@@ -11,4 +11,7 @@ interface ElementReceiverSignature<T extends string = 'article'> {
   }
 }
 
-export default class ElementReceiver<T extends string> extends Component<ElementReceiverSignature<T>> {}
+export default class ElementReceiver<T extends string> extends Component<ElementReceiverSignature<T>> {<template>{{#let @tag as |Tag|}}
+  {{!--@glint-ignore--}}
+  <Tag id="content" ...attributes>{{yield}}</Tag>
+{{/let}}</template>}
